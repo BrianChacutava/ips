@@ -13,26 +13,35 @@
     <meta name="description" content="IPS">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="{{asset('imagens/QRAUqs9.png')}}">
-    <link rel="shortcut icon" href="{{asset('imagens/QRAUqs9.png')}}">
+    <link rel="apple-touch-icon" href="{{asset('images/QRAUqs9.png')}}">
+    <link rel="shortcut icon" href="{{asset('images/QRAUqs9.png')}}">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css"> --}}
+    <link rel="stylesheet" href="{{asset('assets/normalize/normalize.css')}}">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"> --}}
+    <link rel="stylesheet" href="{{asset('assets/bootstrap/dist/css/bootstrap.min.css')}}">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"> --}}
+    <link rel="stylesheet" href="{{asset('assets/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    {{-- <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css"> --}}
+        <link rel="stylesheet"
+            href="{{asset('assets/pixeden-stroke-7-icon/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{{asset('assets/css/cs-skin-elastic.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
-    <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
+    <link href="{{asset('assets/chartist/dist/chartist.min.css')}}" rel="stylesheet">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet"> --}}
+    <link href="{{asset('assets/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
+    {{-- <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" /> --}}
+    <link href="{{asset('assets/weathericons/css/weather-icons.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets\fullcalendar\main.min.css')}}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
 
     <style>
+        
         #weatherWidget .currentDesc {
             color: #ffffff !important;
         }
@@ -83,88 +92,115 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                        <a href="/"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
-                    <li class="menu-title">IPS Services</li><!-- /.menu-title -->
+                    <li class="menu-title">Visão Global</li><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Components</a>
+                            aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Vendas</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Buttons</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Badges</a></li>
-                            <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Tabs</a></li>
+                            <li><i class="fa fa-group"></i><a href="{{ route('cliente.create') }}">Clientes</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Artigos de Vendas</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Orcamentos</a></li>
+                            <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Faturas</a></li>
 
-                            <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Cards</a></li>
-                            <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Alerts</a></li>
-                            <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Progress Bars</a></li>
-                            <li><i class="fa fa-fire"></i><a href="ui-modals.html">Modals</a></li>
-                            <li><i class="fa fa-book"></i><a href="ui-switches.html">Switches</a></li>
-                            <li><i class="fa fa-th"></i><a href="ui-grids.html">Grids</a></li>
-                            <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Typography</a></li>
+                            <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Notas de Credito ou Debito</a>
+                            </li>
+                            <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Regras de Venda</a>
+                            </li>
+
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
+                            aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Despesas</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
-                            <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-basic.html">Despesas</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-data.html">Fornecedores</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-data.html">Grupos de Fornecedores</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
+                            aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Contas Correntes</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Recibos</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Pagamentos</a></li>
                         </ul>
                     </li>
 
-                    <li class="menu-title">Icons</li><!-- /.menu-title -->
-
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
+                            aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Inventario</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Font
-                                    Awesome</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Themefy Icons</a>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Artigos</a>
+                            </li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Acertos</a>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Transferencia de
+                                    Stock</a>
+                            </li>
+                            {{--  Onde serao gerados e listados doc de Transporte, pedido de espedi. pendente e vencido  --}}
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Espedicao</a>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Receção de
+                                    Mercadoria</a>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="widgets.html"> <i class="menu-icon ti-email"></i>Widgets </a>
-                    </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
+                            aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Imposto</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Chart JS</a>
+                            <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Lancamento de
+                                    Imposto</a>
                             </li>
-                            <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Flot Chart</a></li>
-                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Chart</a>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Lancamento de
+                                    Retencao</a></li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Retencões
+                                    Pendentes</a></li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Definições de
+                                    imposto</a></li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Taxas</a></li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Tipos de IVA</a>
                             </li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Regime de IVA</a>
+                            </li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Classes de
+                                    Imposto</a></li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Subclasses de
+                                    Imposto</a></li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Espaços Fiscais</a>
+                            </li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Motivos de
+                                    Inseção</a></li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Tipos de doc.
+                                    Fiscal</a></li>
                         </ul>
                     </li>
 
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>
+                            aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Resultados</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Vector Maps</a>
+                            <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Saldos das Contas</a></li>
+                            <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Extr. de Movimentos</a>
                             </li>
                         </ul>
                     </li>
                     <li class="menu-title">Extras</li><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
+                            aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Configuração</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
-                            <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a>
-                            </li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Empresas</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Serie</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Atividades Economicas</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Culturas</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Paises</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Regiões</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Instituições Bancarias</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Moedas</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Taxas de Cambio</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Artigos</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -178,8 +214,8 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="./"><img src="{{asset('images/lg-01.png')}}" alt="IPS"></a>
+                    <a class="navbar-brand hidden" href="./"><img src="{{asset('images/lg-01.png')}}" alt="IPS"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -227,7 +263,7 @@
                             <div class="dropdown-menu" aria-labelledby="message">
                                 <p class="red">You have 4 Mails</p>
                                 <a class="dropdown-item media" href="#">
-                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
+                                    <span class="photo media-left"><img alt="avatar" src="{{asset('images/avatar/1.jpg')}}"></span>
                                     <div class="message media-body">
                                         <span class="name float-left">Jonathan Smith</span>
                                         <span class="time float-right">Just now</span>
@@ -235,7 +271,7 @@
                                     </div>
                                 </a>
                                 <a class="dropdown-item media" href="#">
-                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg"></span>
+                                    <span class="photo media-left"><img alt="avatar" src="{{asset('images/avatar/2.jpg')}}"></span>
                                     <div class="message media-body">
                                         <span class="name float-left">Jack Sanders</span>
                                         <span class="time float-right">5 minutes ago</span>
@@ -243,7 +279,7 @@
                                     </div>
                                 </a>
                                 <a class="dropdown-item media" href="#">
-                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg"></span>
+                                    <span class="photo media-left"><img alt="avatar" src="{{asset('images/avatar/3.jpg')}}"></span>
                                     <div class="message media-body">
                                         <span class="name float-left">Cheryl Wheeler</span>
                                         <span class="time float-right">10 minutes ago</span>
@@ -251,7 +287,7 @@
                                     </div>
                                 </a>
                                 <a class="dropdown-item media" href="#">
-                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg"></span>
+                                    <span class="photo media-left"><img alt="avatar" src="{{asset('images/avatar/4.jpg')}}"></span>
                                     <div class="message media-body">
                                         <span class="name float-left">Rachel Santos</span>
                                         <span class="time float-right">15 minutes ago</span>
@@ -265,7 +301,7 @@
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="{{asset('images/admin.jpg')}}" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
