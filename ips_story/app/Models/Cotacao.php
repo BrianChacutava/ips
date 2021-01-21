@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,23 +22,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $funcionario_id
  * @property int $termo_pagamento_id
  * @property Carbon|null $limite_pagamento
- * @property int $artigo_has_preco_id
  * @property int|null $quantidade
  * @property float|null $preco_unitario
  * @property float|null $desconto
+ * @property int $regime_pagamento_id
+ * @property int $Regime_iva_id
  * @property float|null $subtotal
  * @property float|null $iva
  * @property float|null $total
  * @property string|null $estado
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
- * @property ArtigoHasPreco $artigo_has_preco
+ * @property RegimeIva $regime_iva
  * @property Cliente $cliente
  * @property Empresa $empresa
  * @property Funcionario $funcionario
+ * @property RegimePagamento $regime_pagamento
  * @property TermoPagamento $termo_pagamento
+ * @property Collection|ArtigoHasPreco[] $artigo_has_precos
  *
  * @package App\Models
  */
@@ -53,10 +57,11 @@ class Cotacao extends Model
 		'validade' => 'int',
 		'funcionario_id' => 'int',
 		'termo_pagamento_id' => 'int',
-		'artigo_has_preco_id' => 'int',
 		'quantidade' => 'int',
 		'preco_unitario' => 'float',
 		'desconto' => 'float',
+		'regime_pagamento_id' => 'int',
+		'Regime_iva_id' => 'int',
 		'subtotal' => 'float',
 		'iva' => 'float',
 		'total' => 'float'
@@ -74,19 +79,20 @@ class Cotacao extends Model
 		'funcionario_id',
 		'termo_pagamento_id',
 		'limite_pagamento',
-		'artigo_has_preco_id',
 		'quantidade',
 		'preco_unitario',
 		'desconto',
+		'regime_pagamento_id',
+		'Regime_iva_id',
 		'subtotal',
 		'iva',
 		'total',
 		'estado'
 	];
 
-	public function artigo_has_preco()
+	public function regime_iva()
 	{
-		return $this->belongsTo(ArtigoHasPreco::class);
+		return $this->belongsTo(RegimeIva::class, 'Regime_iva_id');
 	}
 
 	public function cliente()
@@ -104,8 +110,20 @@ class Cotacao extends Model
 		return $this->belongsTo(Funcionario::class);
 	}
 
+	public function regime_pagamento()
+	{
+		return $this->belongsTo(RegimePagamento::class);
+	}
+
 	public function termo_pagamento()
 	{
 		return $this->belongsTo(TermoPagamento::class);
+	}
+
+	public function artigo_has_precos()
+	{
+		return $this->belongsToMany(ArtigoHasPreco::class, 'cotacao_has_artigo_has_preco')
+					->withPivot('id', 'preço', 'quantidade', 'deleted_at')
+					->withTimestamps();
 	}
 }

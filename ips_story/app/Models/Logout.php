@@ -13,9 +13,9 @@ use Illuminate\Database\Eloquent\Model;
  * Class Logout
  * 
  * @property int $id
- * @property int $user_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property int $user_id
  * 
  * @property User $user
  *

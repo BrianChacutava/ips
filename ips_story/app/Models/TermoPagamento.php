@@ -16,9 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * 
  * @property int $id
  * @property string|null $termo
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
  * @property Collection|Cotacao[] $cotacaos
  *

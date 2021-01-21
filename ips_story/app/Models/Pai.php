@@ -17,10 +17,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property string $nome
  * @property string|null $lingua
- * @property int|null $moeda_id
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property int|null $moeda_id
  * 
  * @property Moeda|null $moeda
  * @property Collection|Provincium[] $provincia

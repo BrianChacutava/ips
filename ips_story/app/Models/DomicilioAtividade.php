@@ -21,9 +21,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $email
  * @property string|null $email_alternativo
  * @property int $endereco_id
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
  * @property Endereco $endereco
  * @property Collection|Empresa[] $empresas

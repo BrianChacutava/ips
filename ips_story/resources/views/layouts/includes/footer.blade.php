@@ -43,8 +43,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     --}}
-
+    @stack('pre-js')
     <script src="{{ asset('assets/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{asset('assets/js/lib/chosen/chosen.jquery.min.js')}}"></script>
+    
     <script src="{{asset('assets/popper-js/dist/umd/popper.min.js')}}"></script>
 
     <script src="{{asset('assets/bootstrap/dist/js/bootstrap.min.js')}}"></script>
@@ -72,8 +74,24 @@
     <script src="{{asset('assets/js/init/fullcalendar-init.js')}}"></script>
 
 
+    
+
+
+
     <!--Local Stuff-->
     <script>
+
+
+        
+    jQuery(document).ready(function() {
+        jQuery(".standardSelect").chosen({
+            disable_search_threshold: 10,
+            no_results_text: "Oops, nothing found!",
+            width: "100%"
+        });
+    });
+
+
         jQuery(document).ready(function($) {
             "use strict";
 
@@ -264,5 +282,6 @@
             // Bar Chart #flotBarChart End
         });
     </script>
+    @stack('js')
 </body>
 </html>

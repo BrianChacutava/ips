@@ -17,11 +17,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property int $artigo_id
  * @property int $preco_id
- * @property float|null $unidade_base
+ * @property float|null $quantidade
  * @property int $grupo_preco_id
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
  * @property Artigo $artigo
  * @property GrupoPreco $grupo_preco
@@ -34,18 +34,20 @@ class ArtigoHasPreco extends Model
 {
 	use SoftDeletes;
 	protected $table = 'artigo_has_preco';
+	public $incrementing = false;
 
 	protected $casts = [
+		'id' => 'int',
 		'artigo_id' => 'int',
 		'preco_id' => 'int',
-		'unidade_base' => 'float',
+		'quantidade' => 'float',
 		'grupo_preco_id' => 'int'
 	];
 
 	protected $fillable = [
 		'artigo_id',
 		'preco_id',
-		'unidade_base',
+		'quantidade',
 		'grupo_preco_id'
 	];
 
@@ -66,6 +68,8 @@ class ArtigoHasPreco extends Model
 
 	public function cotacaos()
 	{
-		return $this->hasMany(Cotacao::class);
+		return $this->belongsToMany(Cotacao::class, 'cotacao_has_artigo_has_preco')
+					->withPivot('id', 'preço', 'quantidade', 'deleted_at')
+					->withTimestamps();
 	}
 }

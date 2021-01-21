@@ -17,9 +17,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $departamento_id
  * @property int $funcionario_id
  * @property string|null $descricao
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
  * @property Departamento $departamento
  * @property Funcionario $funcionario

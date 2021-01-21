@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,15 +22,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float|null $valor_final
  * @property int $funcionario_id
  * @property string|null $descricao
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
  * @property RegimeIva $regime_iva
  * @property Cliente $cliente
  * @property Funcionario $funcionario
  * @property MetodePagamento $metode_pagamento
  * @property RegimePagamento $regime_pagamento
+ * @property Collection|Artigo[] $artigos
  *
  * @package App\Models
  */
@@ -80,5 +82,12 @@ class Venda extends Model
 	public function regime_pagamento()
 	{
 		return $this->belongsTo(RegimePagamento::class);
+	}
+
+	public function artigos()
+	{
+		return $this->belongsToMany(Artigo::class, 'artigo_has_venda')
+					->withPivot('id', 'deleted_at')
+					->withTimestamps();
 	}
 }

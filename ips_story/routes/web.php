@@ -25,6 +25,9 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/', 'HomeController@index');
 
 Route::resource('/venda/cliente', 'venda\cliente\clienteController');
+Route::resource('/venda/artigo', 'venda\artigo\artigosController');
+Route::resource('/venda/orcamento', 'venda\orcamento\cotacaoController');
+
 
 
 });

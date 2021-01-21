@@ -20,9 +20,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float|null $desconto
  * @property float|null $valor
  * @property float|null $valor_iva
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
  * @property Artigo $artigo
  * @property Fatura $fatura

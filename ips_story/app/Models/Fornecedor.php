@@ -20,11 +20,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $email
  * @property string|null $website
  * @property string|null $foto
- * @property int $endereco_id
- * @property int $gupo_fornecedor_id
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property int $endereco_id
+ * @property int $gupo_fornecedor_id
  * 
  * @property Endereco $endereco
  * @property GupoFornecedor $gupo_fornecedor

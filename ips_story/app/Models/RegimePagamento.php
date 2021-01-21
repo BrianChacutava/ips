@@ -17,10 +17,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property int|null $dias
  * @property float|null $taxa
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
+ * @property Collection|Cotacao[] $cotacaos
  * @property Collection|Fatura[] $faturas
  * @property Collection|Venda[] $vendas
  *
@@ -40,6 +41,11 @@ class RegimePagamento extends Model
 		'dias',
 		'taxa'
 	];
+
+	public function cotacaos()
+	{
+		return $this->hasMany(Cotacao::class);
+	}
 
 	public function faturas()
 	{

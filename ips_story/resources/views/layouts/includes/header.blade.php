@@ -13,6 +13,9 @@
     <meta name="description" content="IPS">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+    @stack('pre-css')
+
     <link rel="apple-touch-icon" href="{{asset('images/QRAUqs9.png')}}">
     <link rel="shortcut icon" href="{{asset('images/QRAUqs9.png')}}">
 
@@ -39,6 +42,13 @@
     <link href="{{asset('assets/weathericons/css/weather-icons.css')}}" rel="stylesheet" />
     <link href="{{asset('assets\fullcalendar\main.min.css')}}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{{asset('assets/css/lib/chosen/chosen.min.css')}}">
+    
+    <link rel="stylesheet" href="{{ asset('assets/css/lib/datatable/dataTables.bootstrap.min.css') }}">
+
+
+
 
     <style>
         
@@ -83,6 +93,9 @@
             height: 160px;
         }
     </style>
+
+        @stack('css')
+
 </head>
 
 <body>
@@ -99,9 +112,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Vendas</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-group"></i><a href="{{ route('cliente.create') }}">Clientes</a></li>
-                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Artigos de Vendas</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Orcamentos</a></li>
+                            <li><i class="fa fa-group"></i><a href="{{ route('cliente.index') }}">Clientes</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('artigo.index') }}">Artigos de Vendas</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="{{ route('orcamento.index') }}">Orcamentos</a></li>
                             <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Faturas</a></li>
 
                             <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Notas de Credito ou Debito</a>

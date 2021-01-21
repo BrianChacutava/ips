@@ -16,9 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property int $empresa_id
  * @property int $dados_bancarios_id
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
  * @property DadosBancario $dados_bancario
  * @property Empresa $empresa
@@ -29,8 +29,10 @@ class EmpresaHasDadosBancario extends Model
 {
 	use SoftDeletes;
 	protected $table = 'empresa_has_dados_bancarios';
+	public $incrementing = false;
 
 	protected $casts = [
+		'id' => 'int',
 		'empresa_id' => 'int',
 		'dados_bancarios_id' => 'int'
 	];

@@ -18,9 +18,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $nome
  * @property string|null $sigla
  * @property float|null $cambio_atual
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
  * @property Collection|Cliente[] $clientes
  * @property Collection|DadosBancario[] $dados_bancarios

@@ -19,10 +19,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $formacao
  * @property Carbon|null $data_inicio
  * @property Carbon|null $data_fim
- * @property int $user_id
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property int $user_id
  * 
  * @property User $user
  * @property Collection|Cotacao[] $cotacaos

@@ -1,0 +1,5 @@
+
+/* Fix selectpicker optgroup header */
+.dropdown.bootstrap-select .dropdown-header {
+    text-align: left;
+}

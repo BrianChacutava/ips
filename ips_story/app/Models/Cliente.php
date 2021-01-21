@@ -23,11 +23,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $foto
  * @property int|null $endereco_id
  * @property int|null $moeda_id
- * @property int|null $gupo_cliente_id
- * @property int|null $blokeado
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property int|null $gupo_cliente_id
+ * @property int|null $blokeado
  * 
  * @property Endereco|null $endereco
  * @property GupoCliente|null $gupo_cliente

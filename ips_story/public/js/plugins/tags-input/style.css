@@ -1,0 +1,13 @@
+
+.label-info{
+	background-color: #009efb;
+}
+.bootstrap-tagsinput .tag{
+	display: inline-block;
+	padding: 2px 6px;
+	margin: 2px;
+	font-size: 15px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}

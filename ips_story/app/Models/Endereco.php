@@ -25,11 +25,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $caixa_postal
  * @property string|null $bairo
  * @property int|null $blockeado
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
  * @property Provincium $provincium
+ * @property Collection|Armazem[] $armazems
  * @property Collection|Cliente[] $clientes
  * @property Collection|DomicilioAtividade[] $domicilio_atividades
  * @property Collection|Fornecedor[] $fornecedors
@@ -63,6 +64,11 @@ class Endereco extends Model
 	public function provincium()
 	{
 		return $this->belongsTo(Provincium::class, 'provincia_id');
+	}
+
+	public function armazems()
+	{
+		return $this->hasMany(Armazem::class);
 	}
 
 	public function clientes()

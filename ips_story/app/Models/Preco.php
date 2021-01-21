@@ -16,9 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * 
  * @property int $id
  * @property float|null $preco
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
  * @property Collection|Artigo[] $artigos
  *
@@ -40,7 +40,7 @@ class Preco extends Model
 	public function artigos()
 	{
 		return $this->belongsToMany(Artigo::class, 'artigo_has_preco')
-					->withPivot('id', 'unidade_base', 'grupo_preco_id', 'deleted_at')
+					->withPivot('id', 'quantidade', 'grupo_preco_id', 'deleted_at')
 					->withTimestamps();
 	}
 }

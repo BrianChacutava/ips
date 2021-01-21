@@ -22,12 +22,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $domicilio_atividade_id
  * @property string|null $atividade_principal
  * @property string|null $outras_atividades
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
  * @property DomicilioAtividade $domicilio_atividade
  * @property TipoEstabelecimento $tipo_estabelecimento
+ * @property Collection|Armazem[] $armazems
  * @property Collection|Cotacao[] $cotacaos
  * @property Collection|Departamento[] $departamentos
  * @property Collection|DadosBancario[] $dados_bancarios
@@ -39,8 +40,10 @@ class Empresa extends Model
 {
 	use SoftDeletes;
 	protected $table = 'empresa';
+	public $incrementing = false;
 
 	protected $casts = [
+		'id' => 'int',
 		'tipo_estabelecimento_id' => 'int',
 		'domicilio_atividade_id' => 'int'
 	];
@@ -63,6 +66,11 @@ class Empresa extends Model
 	public function tipo_estabelecimento()
 	{
 		return $this->belongsTo(TipoEstabelecimento::class);
+	}
+
+	public function armazems()
+	{
+		return $this->hasMany(Armazem::class);
 	}
 
 	public function cotacaos()

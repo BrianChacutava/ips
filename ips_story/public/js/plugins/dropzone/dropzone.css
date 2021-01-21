@@ -1,0 +1,10 @@
+.dropzone.dz-clickable .dz-message{
+    color: #147899;
+    font-weight: lighter;
+    font-size: 1.5rem;
+}
+
+.dropzone.dz-clickable{
+    border: 4px dashed lightblue;
+    border-radius: 10px;
+}

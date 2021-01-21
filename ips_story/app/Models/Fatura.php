@@ -27,9 +27,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float|null $Incidencia
  * @property float|null $total_iva
  * @property float|null $total
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * 
  * @property Cliente $cliente
  * @property Empresa $empresa

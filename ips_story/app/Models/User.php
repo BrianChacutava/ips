@@ -21,10 +21,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $foto
  * @property Carbon|null $email_verified_at
  * @property string|null $remember_token
- * @property int|null $categoria_usuario_id
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property int|null $categoria_usuario_id
  * 
  * @property CategoriaUsuario|null $categoria_usuario
  * @property Collection|Funcionario[] $funcionarios

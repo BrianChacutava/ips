@@ -17,11 +17,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property string|null $nome
  * @property string|null $capital
- * @property int $pais_id
- * @property string|null $provinciacol
- * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property int $pais_id
+ * @property string|null $provinciacol
  * 
  * @property Pai $pai
  * @property Collection|Endereco[] $enderecos
