@@ -17,6 +17,7 @@ class CreateRegimePagamentoTable extends Migration
             $table->increments('id');
             $table->integer('dias')->nullable();
             $table->float('taxa', 10, 0)->nullable();
+            $table->string('descricao', 100)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

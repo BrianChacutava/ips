@@ -24,9 +24,14 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/', 'HomeController@index');
 
-Route::resource('/venda/cliente', 'venda\cliente\clienteController');
+
 Route::resource('/venda/artigo', 'venda\artigo\artigosController');
 Route::resource('/venda/orcamento', 'venda\orcamento\cotacaoController');
+
+Route::resource('/venda/cliente', 'venda\cliente\clienteController');
+Route::get('/venda/Cliente', 'venda\cliente\clienteController@store1')->name('cliente.store1');
+
+
 
 
 

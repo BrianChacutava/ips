@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * 
+ * @property Collection|Cliente[] $clientes
+ * @property Collection|Fornecedor[] $fornecedors
  * @property Collection|Venda[] $vendas
  *
  * @package App\Models
@@ -34,6 +36,16 @@ class MetodePagamento extends Model
 		'metodo',
 		'descricao'
 	];
+
+	public function clientes()
+	{
+		return $this->hasMany(Cliente::class);
+	}
+
+	public function fornecedors()
+	{
+		return $this->hasMany(Fornecedor::class);
+	}
 
 	public function vendas()
 	{

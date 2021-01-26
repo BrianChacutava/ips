@@ -17,10 +17,14 @@ class CreateFornecedorTable extends Migration
             $table->increments('id');
             $table->integer('nuit')->nullable();
             $table->string('nome', 100);
+            $table->string('sigla', 45)->nullable();
             $table->string('telefone', 45)->nullable();
             $table->string('email', 50)->nullable();
             $table->string('website', 100)->nullable();
             $table->string('foto', 100)->nullable();
+            $table->unsignedInteger('metode_pagamento_id')->nullable()->index('fk_fornecedor_metode_pagamento1_idx');
+            $table->unsignedInteger('regime_pagamento_id')->nullable()->index('fk_fornecedor_regime_pagamento1_idx');
+            $table->unsignedInteger('Regime_iva_id')->nullable()->index('fk_fornecedor_Regime_iva1_idx');
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedInteger('endereco_id')->index('fk_fornecedor_endereco1_idx');

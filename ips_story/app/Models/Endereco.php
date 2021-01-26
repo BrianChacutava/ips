@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Provincium $provincium
  * @property Collection|Armazem[] $armazems
  * @property Collection|Cliente[] $clientes
+ * @property Collection|DadosBancario[] $dados_bancarios
  * @property Collection|DomicilioAtividade[] $domicilio_atividades
  * @property Collection|Fornecedor[] $fornecedors
  *
@@ -74,6 +75,11 @@ class Endereco extends Model
 	public function clientes()
 	{
 		return $this->hasMany(Cliente::class);
+	}
+
+	public function dados_bancarios()
+	{
+		return $this->hasMany(DadosBancario::class);
 	}
 
 	public function domicilio_atividades()

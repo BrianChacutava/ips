@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers\venda\cliente;
 
+use App\Models\Pai;
+use App\Models\Moeda;
 use App\Models\Cliente;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Endereco;
 use App\Models\Fornecedor;
-use App\Models\Moeda;
-use App\Models\Pai;
 use App\Models\Provincium;
+use App\Models\GupoCliente;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\DadosBancario;
+use App\Models\GupoFornecedor;
+use App\Models\MetodePagamento;
+use App\Models\RegimeIva;
+use App\Models\RegimePagamento;
+use App\Models\TermoPagamento;
 
 class clienteController extends Controller
 {
@@ -32,7 +39,6 @@ class clienteController extends Controller
         //
         $clientes = Cliente::all();
         return view('vendas/cliente/cliente', compact('clientes'));
-
     }
 
     /**
@@ -49,10 +55,15 @@ class clienteController extends Controller
         $moedas = Moeda::all();
         $Pais = Pai::with('provincia')->get();
         $Provincia = Provincium::all();
+        $grupo_cliente = GupoCliente::all();
+        $metodo_pagamento = MetodePagamento::all();
+        $iva = RegimeIva::all();
+        $termo_pagamento = TermoPagamento::all();
+        $regime_pagamento = RegimePagamento::all();
+        $grupo_fornecedor = GupoFornecedor::all();
 
 
-        return view('vendas/cliente/criar_cliente', compact('Provincia', 'clientes', 'fornecedores', 'enderecos', 'moedas', 'Pais'));
-
+        return view('vendas/cliente/criar_cliente', compact('grupo_fornecedor', 'regime_pagamento', 'termo_pagamento', 'iva', 'metodo_pagamento', 'Provincia', 'clientes', 'fornecedores', 'enderecos', 'moedas', 'Pais', 'grupo_cliente'));
     }
 
     /**
@@ -64,6 +75,135 @@ class clienteController extends Controller
     public function store(Request $request)
     {
         //
+        $dados = $request->all();
+
+
+        // $endereco = new Endereco();
+        // $endereco->rua = $request->rua;
+        // $endereco->av = $request->avenida;
+        // $endereco->provincia_id = $request->provincia_id;
+        // $endereco->cod_postal = $request->codigoP;
+        // $endereco->save();
+
+        dd($request);
+
+        // return redirect()->route('artigo.index');
+
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store1(Request $request)
+    {
+        //  
+        $dados = $request->all();
+        // dd($request);
+
+
+        if ($request->cliente == 'cliente') {
+            // dd('cliente');
+
+
+            // criar endereço
+            $endereco = new Endereco();
+            $endereco->rua = $request->rua;
+            $endereco->av = $request->avenida;
+            $endereco->provincia_id = $request->provincia_id;
+            $endereco->cod_postal = $request->codigoP;
+            $endereco->bairo = $request->bairo;
+            $endereco->blockeado = 0;
+            $endereco->save();
+
+
+            // Criar Cliente
+            $cliente = new Cliente();
+            $cliente->nome = $request->nome;
+            $cliente->nuit = $request->nuit;
+            $cliente->telefone = $request->telefone;
+            $cliente->email = $request->email;
+            $cliente->website = $request->website;
+            $cliente->moeda_id = $request->moeda;
+            $cliente->endereco_id = Endereco::all()->last()->id;
+            $cliente->gupo_cliente_id = $request->gpcliente;
+            $cliente->metode_pagamento_id = $request->MtpagamentoC;
+            $cliente->regime_pagamento_id = $request->RpagamentoC;
+            $cliente->Regime_iva_id = $request->regimeC;
+            $cliente_create = $cliente->save();
+
+            return redirect()->route('cliente.create')
+                ->with('message', '...Cliente criado');
+
+            } elseif ($request->cliente == 'fornecedor') {
+                // dd('fornacedor');
+                
+                // criar endereço
+                $endereco = new Endereco();
+                $endereco->rua = $request->rua;
+                $endereco->av = $request->avenida;
+                $endereco->provincia_id = $request->provincia_id;
+                $endereco->cod_postal = $request->codigoP;
+                $endereco->bairo = $request->bairo;
+                $endereco->blockeado = 0;
+                $endereco->save();
+    
+                // Criar fornecedor
+                $fornecedor = new Fornecedor();
+                $fornecedor->nome = $request->nome;
+                $fornecedor->sigla = $request->sigla;
+                $fornecedor->nuit = $request->nuit;
+                $fornecedor->telefone = $request->telefone;
+                $fornecedor->email = $request->email;
+                $fornecedor->website = $request->website;
+                // $fornecedor->moeda_id = $request->moeda;
+                $fornecedor->endereco_id = Endereco::all()->last()->id;
+                $fornecedor->gupo_fornecedor_id = $request->gfornecedor;
+                $fornecedor->metode_pagamento_id = $request->MtpagamentoF;
+                $fornecedor->regime_pagamento_id = $request->regime_pagamentoF;
+                $fornecedor->Regime_iva_id = $request->regimeF;
+                $fornecedor_create = $fornecedor->save();
+    
+                return redirect()->route('cliente.create')
+                    ->with('message', '...Fornecedor criado');
+    
+            } elseif ($request->cliente == 'banco') {
+            // dd('banco');
+            
+            // criar endereço
+            $endereco = new Endereco();
+            $endereco->rua = $request->rua;
+            $endereco->av = $request->avenida;
+            $endereco->provincia_id = $request->provincia_id;
+            $endereco->cod_postal = $request->codigoP;
+            $endereco->bairo = $request->bairo;
+            $endereco->blockeado = 0;
+            $endereco->save();
+
+            // Criar banco
+            $banco = new DadosBancario();
+            $banco->nome_banco = $request->nome;
+            $banco->nuit = $request->nuit;
+            $banco->telefone = $request->telefone;
+            $banco->email = $request->email;
+            $banco->website = $request->website;
+            $banco->moeda_id = $request->moeda;
+            $banco->endereco_id = Endereco::all()->last()->id;
+
+            $banco->nome_banco = $request->nomeBanco;
+            $banco->numero_conta = $request->numConta;
+            $banco->nib = $request->nib;
+            
+            $entidade_bancaria_create = $banco->save();
+
+            return redirect()->route('cliente.create')
+                ->with('message', '...Instituicao Bancaria criado');
+
+        }
+    
+        // return redirect()->route('cliente.create');
+
     }
 
     /**

@@ -40,17 +40,13 @@
                                 <div class="col-lg-4">
                                     <label for="vat" class=" form-control-label"><small>Unidade Base</small></label>
                                     <select data-placeholder="Escolha a unidade base..." class="standardSelect" tabindex="1">
-                                        <option value="" label="default"></option>
-                                        <option value="United States">unidade</option>
-                                        <option value="United Kingdom">embalagem</option>
-                                        <option value="Afghanistan">caixa</option>
-                                        <option value="Aland Islands">kilograma</option>
-                                        <option value="Albania">grama</option>
-                                        <option value="Algeria">metro</option>
-                                        <option value="American Samoa">cemtimetro</option>
-                                        <option value="Andorra">hora</option>
-                                        <option value="Angola">minuto</option>
-                                        <option value="Anguilla">segundo</option>
+                                        
+                                        @forelse ($unidade as $unidades)
+
+                                        <option value="{{ $unidades->id }}">{{ $unidades->descricao }}</option>
+                                        @empty
+                                        <p>Nenhum unidade inserida</p>
+                                        @endforelse
                                     </select>
                                 </div>
 
@@ -58,9 +54,13 @@
                         <div class="col-lg-4">
                             <label for="vat" class=" form-control-label"><small>Tipo de Artigo</small></label>
                             <select data-placeholder="Escolha Moeda" class="standardSelect" tabindex="2">
-                                <option value="" label="default"></option>
-                                <option value="United States">Produto</option>
-                                <option value="United Kingdom">Servico</option>
+                                
+                            @forelse ($tipo_artigo as $tipo_artigos)
+
+                            <option value="{{ $tipo_artigos->id }}">{{ $tipo_artigos->tipo }}</option>
+                            @empty
+                            <p>Nenhum unidade inserida</p>
+                            @endforelse
                             </select>
                         </div>
 
@@ -114,17 +114,13 @@
             <div class="col-lg-4">
                 <label for="vat" class=" form-control-label"><small>Unidade de Venda</small></label>
                 <select data-placeholder="Escolha a unidade..." class="standardSelect" tabindex="1">
-                    <option value="" label="default"></option>
-                    <option value="United States">unidade</option>
-                    <option value="United Kingdom">embalagem</option>
-                    <option value="Afghanistan">caixa</option>
-                    <option value="Aland Islands">kilograma</option>
-                    <option value="Albania">grama</option>
-                    <option value="Algeria">metro</option>
-                    <option value="American Samoa">cemtimetro</option>
-                    <option value="Andorra">hora</option>
-                    <option value="Angola">minuto</option>
-                    <option value="Anguilla">segundo</option>
+                    
+                            @forelse ($unidade as $unidades)
+
+                            <option value="{{ $unidades->id }}">{{ $unidades->descricao }}</option>
+                            @empty
+                            <p>Nenhum unidade inserida</p>
+                            @endforelse
                 </select>
             </div>
 
@@ -140,7 +136,7 @@
             <div class="col-lg-12" style="margin-top: 35px">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Custom Table</strong>
+                        <strong class="card-title">Tabela de Preço</strong>
                 <button type="button" class="btn btn-primary btn-sm" style="float: right">Adicionar Preço</button>
 
                     </div>

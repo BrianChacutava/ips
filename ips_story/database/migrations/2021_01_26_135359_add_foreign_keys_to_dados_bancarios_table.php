@@ -14,6 +14,7 @@ class AddForeignKeysToDadosBancariosTable extends Migration
     public function up()
     {
         Schema::table('dados_bancarios', function (Blueprint $table) {
+            $table->foreign('endereco_id', 'fk_dados_bancarios_endereco1')->references('id')->on('endereco')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign('moeda_id', 'fk_dados_bancarios_moeda1')->references('id')->on('moeda')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
@@ -26,6 +27,7 @@ class AddForeignKeysToDadosBancariosTable extends Migration
     public function down()
     {
         Schema::table('dados_bancarios', function (Blueprint $table) {
+            $table->dropForeign('fk_dados_bancarios_endereco1');
             $table->dropForeign('fk_dados_bancarios_moeda1');
         });
     }

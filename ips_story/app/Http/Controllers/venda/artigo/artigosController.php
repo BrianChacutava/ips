@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\venda\artigo;
 
 use App\Http\Controllers\Controller;
+use App\Models\Artigo;
+use App\Models\TipoArtigo;
+use App\Models\UnidadeBase;
 use Illuminate\Http\Request;
 
 class artigosController extends Controller
@@ -27,7 +30,11 @@ class artigosController extends Controller
     public function create()
     {
         //
-        return view('vendas/artigo/criar_artigo');
+        $artigo = Artigo::all();
+        $unidade = UnidadeBase::all();
+        $tipo_artigo = TipoArtigo::all();
+        
+        return view('vendas/artigo/criar_artigo', compact('artigo', 'unidade', 'tipo_artigo'));
     }
 
     /**

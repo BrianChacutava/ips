@@ -21,7 +21,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * 
+ * @property Collection|Cliente[] $clientes
  * @property Collection|Cotacao[] $cotacaos
+ * @property Collection|Fornecedor[] $fornecedors
  * @property Collection|Venda[] $vendas
  *
  * @package App\Models
@@ -40,9 +42,19 @@ class RegimeIva extends Model
 		'percentagem'
 	];
 
+	public function clientes()
+	{
+		return $this->hasMany(Cliente::class, 'Regime_iva_id');
+	}
+
 	public function cotacaos()
 	{
 		return $this->hasMany(Cotacao::class, 'Regime_iva_id');
+	}
+
+	public function fornecedors()
+	{
+		return $this->hasMany(Fornecedor::class, 'Regime_iva_id');
 	}
 
 	public function vendas()

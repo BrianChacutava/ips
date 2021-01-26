@@ -16,11 +16,17 @@ class CreateDadosBancariosTable extends Migration
         Schema::create('dados_bancarios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome_banco', 45)->nullable();
-            $table->integer('numero_conta')->nullable();
+            $table->string('numero_conta', 50)->nullable();
             $table->string('nib', 45)->nullable();
+            $table->unsignedInteger('moeda_id')->nullable()->index('fk_dados_bancarios_moeda1_idx');
+            $table->integer('nuit')->nullable();
+            $table->string('telefone', 15)->nullable();
+            $table->string('email', 45)->nullable();
+            $table->string('website', 100)->nullable();
+            $table->string('foto', 100)->nullable();
+            $table->unsignedInteger('endereco_id')->nullable()->index('fk_dados_bancarios_endereco1_idx');
             $table->timestamps();
             $table->softDeletes();
-            $table->unsignedInteger('moeda_id')->nullable()->index('fk_dados_bancarios_moeda1_idx');
         });
     }
 
