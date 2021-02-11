@@ -68,6 +68,7 @@
                                 <label for="pais" class=" form-control-label"><small>Pais</small></label>
                                 <select data-placeholder="Escolha o pais..." class="standardSelect" name="pais_id"
                                     id="paises" tabindex="1">
+                                    <option value="" label="default"></option>
                                     @forelse ($Pais as $pais)
 
                                     <option value="{{ $pais->id }}">{{ $pais->nome }}</option>
@@ -129,17 +130,7 @@
                                 <label for="vat" class=" form-control-label"><small>Provincia</small></label>
                                 <select data-placeholder="Escolha a provincia..." name="provincia_id" id="provincia"
                                     class="standardSelect" tabindex="1">
-                                    <option value="1">Maputo</option>
-                                    <option value="2">Inhambane</option>
-                                    <option value="3">Gaza</option>
-                                    <option value="4">Sofala</option>
-                                    <option value="5">Manica</option>
-                                    <option value="6">Tete</option>
-                                    <option value="7">Zambezia</option>
-                                    <option value="8">Nampula</option>
-                                    <option value="9">Cabo Delgado</option>
-                                    <option value="10">Niassa</option>
-
+                                    <option value="" label="default"></option>
                                 </select>
                             </div>
 
@@ -422,8 +413,10 @@
 
 
 <script>
-    $(document).ready(function () {
-        $("#attachments").fileinput({
+    jQuery(document).ready(function () {
+        
+
+        jQuery("#attachments").fileinput({
             theme: "fa",
             uploadExtraData: {
                 '_token': "{{ csrf_token() }}"
@@ -436,21 +429,28 @@
 
 <script>
     function chageProvincesByCountry(){
+
         const paises = {!! $Pais->toJson() !!};
-        const selectedOption = $('select#paise').val()
-        let pais = (new Searchable(paises)).data(selectedOption)
-        windows.console.log(pais)
+        const selectedOption = jQuery('select#paises').val()
+        
+        let pais = (new Searchable(paises)).data(selectedOption);
         
         let html = '';
         if(pais != null)
-            $.each(pais.provincia, function (index, value) {
-              html += "<option value='"+value.id+"'>"+value.nome+"</option>"
+
+        jQuery.each(pais.provincia, function (index, value) {
+
+            html += "<option value='"+value.id+"'>"+value.nome+"</option>"
+
             });
-        $('select#provincia').html(html)
+            alert(html)
+
+            jQuery('select#provincia.standardSelect').html(html);
+            console.log(jQuery('select#provincia'));
     }
 
-    $(document).ready(chageProvincesByCountry);
-    $(document).on('change', '#paises',chageProvincesByCountry);
+    jQuery(document).ready(chageProvincesByCountry);
+    jQuery(document).on('change', '#paises',chageProvincesByCountry);
 </script>
 
 @endpush

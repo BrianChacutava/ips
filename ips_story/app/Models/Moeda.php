@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * 
  * @property Collection|Cliente[] $clientes
  * @property Collection|DadosBancario[] $dados_bancarios
+ * @property Collection|Desspesa[] $desspesas
  * @property Collection|Fatura[] $faturas
  * @property Collection|Pai[] $pais
  *
@@ -52,6 +53,11 @@ class Moeda extends Model
 	public function dados_bancarios()
 	{
 		return $this->hasMany(DadosBancario::class);
+	}
+
+	public function desspesas()
+	{
+		return $this->hasMany(Desspesa::class);
 	}
 
 	public function faturas()

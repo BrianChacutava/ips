@@ -2,21 +2,31 @@
 
 namespace App;
 
+use App\Models\Funcionario;
+use App\Models\CategoriaUsuario;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
+	// use SoftDeletes;
+	protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
+    protected $fillable = [        
+		'name',
+		'email',
+		'password',
+		'foto',
+		'email_verified_at',
+		'remember_token',
+		'categoria_usuario_id'
     ];
 
     /**
@@ -36,4 +46,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    
+	public function categoria_usuario()
+	{
+		return $this->belongsTo(CategoriaUsuario::class);
+	}
+
+	public function funcionarios()
+	{
+		return $this->hasMany(Funcionario::class);
+	}
+
+	public function logins()
+	{
+		return $this->hasMany(Login::class);
+	}
+
+	public function logouts()
+	{
+		return $this->hasMany(Logout::class);
+	}
 }

@@ -11,16 +11,19 @@
 
             <div class="col col-sm-4"><label for="nome"
                     class=" form-control-label"><small>Referência</small></label><input type="text" id="company"
-                    placeholder="Digite o nome" class="input-sm form-control-sm form-control">
+                    placeholder="Digite o nome" value="{{ $referencia }}" class="input-sm form-control-sm form-control">
             </div>
 
             <div class="col-lg-4">
                 <label for="vat" class=" form-control-label"><small>Cliente</small></label>
                 <select data-placeholder="Escolha o Cliente..." class="standardSelect" tabindex="1">
                     <option value="" label="default"></option>
-                    <option value="United States">solar work</option>
-                    <option value="United Kingdom">CDA</option>
-                    <option value="Afghanistan">Mazar</option>
+                    @forelse ($cliente as $clientes)
+
+                    <option value="{{ $clientes->id }}">{{ $clientes->nome }}</option>
+                    @empty
+                    <p>Não existe cliente</p>
+                    @endforelse
                 </select>
             </div>
 
@@ -42,8 +45,12 @@
                 <label for="vat" class=" form-control-label"><small>Vendedor</small></label>
                 <select data-placeholder="Escolha o Funcionario..." class="standardSelect" tabindex="1">
                     <option value="" label="default"></option>
-                    <option value="United States">Brian Chacutava</option>
-                    <option value="United Kingdom">Rasquim Marua</option>
+                    @forelse ($cliente as $clientes)
+
+                    <option value="{{ $clientes->id }}">{{ $clientes->nome }}</option>
+                    @empty
+                    <p>Não existe cliente</p>
+                    @endforelse
                 </select>
             </div>
 
@@ -117,12 +124,9 @@
 </div>
 
 
-<div class="fixed-action-btn">
-
-    <button class="btn-floating btn btn-primary "></button>
-    {{-- <a href="#" class="btn-floating btn-large btn-primary">
-        <i class="ti-plus"></i>
-    </a> --}}
+<div class="col-lg-12">
+    <button type="submit" name="cliente" value="cliente" class="btn btn-primary btn-sm" style="float: right">Guardar e
+        gerar PDF</button>
 </div>
 
 

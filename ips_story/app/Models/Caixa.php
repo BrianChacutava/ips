@@ -12,49 +12,45 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class MetodePagamento
+ * Class Caixa
  * 
  * @property int $id
- * @property string|null $metodo
  * @property string|null $descricao
+ * @property string|null $iban
+ * @property string|null $swift
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
+ * @property int|null $dados_bancarios_id
  * 
- * @property Collection|Cliente[] $clientes
+ * @property DadosBancario|null $dados_bancario
  * @property Collection|Desspesa[] $desspesas
- * @property Collection|Fornecedor[] $fornecedors
- * @property Collection|Venda[] $vendas
  *
  * @package App\Models
  */
-class MetodePagamento extends Model
+class Caixa extends Model
 {
 	use SoftDeletes;
-	protected $table = 'metode_pagamento';
+	protected $table = 'caixa';
 
-	protected $fillable = [
-		'metodo',
-		'descricao'
+	protected $casts = [
+		'dados_bancarios_id' => 'int'
 	];
 
-	public function clientes()
+	protected $fillable = [
+		'descricao',
+		'iban',
+		'swift',
+		'dados_bancarios_id'
+	];
+
+	public function dados_bancario()
 	{
-		return $this->hasMany(Cliente::class);
+		return $this->belongsTo(DadosBancario::class, 'dados_bancarios_id');
 	}
 
 	public function desspesas()
 	{
 		return $this->hasMany(Desspesa::class);
-	}
-
-	public function fornecedors()
-	{
-		return $this->hasMany(Fornecedor::class);
-	}
-
-	public function vendas()
-	{
-		return $this->hasMany(Venda::class);
 	}
 }

@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\venda\orcamento;
 
 use App\Http\Controllers\Controller;
+use App\Models\Artigo;
+use App\Models\Cliente;
+use App\Models\Cotacao;
+use App\Models\Funcionario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class cotacaoController extends Controller
 {
@@ -26,6 +31,18 @@ class cotacaoController extends Controller
     public function create()
     {
         //
+        $orcamento = Cotacao::all();
+        $cliente = Cliente::all();
+        $funcionario = Funcionario::all();
+        $produto = Artigo::all();
+        $referencia = Cotacao::all()->count() . now()->format('dy');
+
+                  
+        $empresa = Auth::user()->funcionarios()->departamentos()->empresa()->get();
+        dd($empresa);
+
+
+        return view('vendas/orcamento/criar_orcamento', compact('orcamento', 'cliente', 'funcionario','referencia'));
     }
 
     /**

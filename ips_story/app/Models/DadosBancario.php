@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * 
  * @property Endereco|null $endereco
  * @property Moeda|null $moeda
+ * @property Collection|Caixa[] $caixas
  * @property Collection|Empresa[] $empresas
  *
  * @package App\Models
@@ -67,6 +68,11 @@ class DadosBancario extends Model
 	public function moeda()
 	{
 		return $this->belongsTo(Moeda::class);
+	}
+
+	public function caixas()
+	{
+		return $this->hasMany(Caixa::class, 'dados_bancarios_id');
 	}
 
 	public function empresas()

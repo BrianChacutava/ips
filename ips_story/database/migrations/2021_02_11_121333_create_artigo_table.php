@@ -25,7 +25,7 @@ class CreateArtigoTable extends Migration
             $table->string('codigo_barras', 45)->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->unsignedInteger('conta de rendimento_id')->nullable()->index('fk_artigo_conta de rendimento1_idx');
+            $table->unsignedInteger('conta_rendimento_id')->nullable()->index('fk_artigo_conta_rendimento1_idx');
         });
     }
 

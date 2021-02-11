@@ -14,7 +14,7 @@ class AddForeignKeysToArtigoTable extends Migration
     public function up()
     {
         Schema::table('artigo', function (Blueprint $table) {
-            $table->foreign('conta de rendimento_id', 'fk_artigo_conta de rendimento1')->references('id')->on('conta de rendimento')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign('conta_rendimento_id', 'fk_artigo_conta_rendimento1')->references('id')->on('conta_rendimento')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign('tipo_artigo_id', 'fk_artigo_tipo_artigo1')->references('id')->on('tipo_artigo')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign('unidade_base_id', 'fk_artigo_unidade_base1')->references('id')->on('unidade_base')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
@@ -28,7 +28,7 @@ class AddForeignKeysToArtigoTable extends Migration
     public function down()
     {
         Schema::table('artigo', function (Blueprint $table) {
-            $table->dropForeign('fk_artigo_conta de rendimento1');
+            $table->dropForeign('fk_artigo_conta_rendimento1');
             $table->dropForeign('fk_artigo_tipo_artigo1');
             $table->dropForeign('fk_artigo_unidade_base1');
         });

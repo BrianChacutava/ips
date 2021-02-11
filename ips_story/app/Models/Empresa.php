@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property string|null $nome_proprietario
  * @property string|null $nome_comercial
+ * @property string|null $slogan
  * @property string|null $nuit
  * @property int $tipo_estabelecimento_id
  * @property int $domicilio_atividade_id
@@ -31,6 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Collection|Armazem[] $armazems
  * @property Collection|Cotacao[] $cotacaos
  * @property Collection|Departamento[] $departamentos
+ * @property Collection|Desspesa[] $desspesas
  * @property Collection|DadosBancario[] $dados_bancarios
  * @property Collection|Fatura[] $faturas
  *
@@ -40,10 +42,8 @@ class Empresa extends Model
 {
 	use SoftDeletes;
 	protected $table = 'empresa';
-	public $incrementing = false;
 
 	protected $casts = [
-		'id' => 'int',
 		'tipo_estabelecimento_id' => 'int',
 		'domicilio_atividade_id' => 'int'
 	];
@@ -51,6 +51,7 @@ class Empresa extends Model
 	protected $fillable = [
 		'nome_proprietario',
 		'nome_comercial',
+		'slogan',
 		'nuit',
 		'tipo_estabelecimento_id',
 		'domicilio_atividade_id',
@@ -81,6 +82,11 @@ class Empresa extends Model
 	public function departamentos()
 	{
 		return $this->hasMany(Departamento::class);
+	}
+
+	public function desspesas()
+	{
+		return $this->hasMany(Desspesa::class);
 	}
 
 	public function dados_bancarios()

@@ -26,8 +26,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
- * @property int|null $conta de rendimento_id
+ * @property int|null $conta_rendimento_id
  * 
+ * @property ContaRendimento|null $conta_rendimento
  * @property TipoArtigo $tipo_artigo
  * @property UnidadeBase $unidade_base
  * @property Collection|Armazem[] $armazems
@@ -45,7 +46,7 @@ class Artigo extends Model
 	protected $casts = [
 		'tipo_artigo_id' => 'int',
 		'unidade_base_id' => 'int',
-		'conta de rendimento_id' => 'int'
+		'conta_rendimento_id' => 'int'
 	];
 
 	protected $fillable = [
@@ -57,8 +58,13 @@ class Artigo extends Model
 		'marca',
 		'modelo_marca',
 		'codigo_barras',
-		'conta de rendimento_id'
+		'conta_rendimento_id'
 	];
+
+	public function conta_rendimento()
+	{
+		return $this->belongsTo(ContaRendimento::class);
+	}
 
 	public function tipo_artigo()
 	{

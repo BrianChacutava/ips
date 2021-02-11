@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * 
  * @property Collection|Cliente[] $clientes
  * @property Collection|Cotacao[] $cotacaos
+ * @property Collection|Desspesa[] $desspesas
  * @property Collection|Fornecedor[] $fornecedors
  * @property Collection|Venda[] $vendas
  *
@@ -50,6 +51,11 @@ class RegimeIva extends Model
 	public function cotacaos()
 	{
 		return $this->hasMany(Cotacao::class, 'Regime_iva_id');
+	}
+
+	public function desspesas()
+	{
+		return $this->hasMany(Desspesa::class, 'Regime_iva_id');
 	}
 
 	public function fornecedors()

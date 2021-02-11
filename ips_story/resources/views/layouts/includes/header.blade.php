@@ -146,7 +146,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Inventario</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Artigos</a>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="{{ route('iventario_artigo.index') }}">Artigos</a>
                             </li>
                             <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Acertos</a>
                             <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Transferencia de

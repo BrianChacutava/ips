@@ -31,6 +31,8 @@ Route::resource('/venda/orcamento', 'venda\orcamento\cotacaoController');
 Route::resource('/venda/cliente', 'venda\cliente\clienteController');
 Route::get('/venda/Cliente', 'venda\cliente\clienteController@store1')->name('cliente.store1');
 
+Route::resource('/inventario/iventario_artigo', 'inventario\inventarioController');
+
 
 
 

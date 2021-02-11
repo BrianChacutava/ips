@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\venda\artigo;
+namespace App\Http\Controllers\despesas;
 
 use App\Http\Controllers\Controller;
-use App\Models\Artigo;
-use App\Models\ContaRendimento;
-use App\Models\TipoArtigo;
-use App\Models\UnidadeBase;
 use Illuminate\Http\Request;
 
-class artigosController extends Controller
+class despesasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +14,9 @@ class artigosController extends Controller
      */
     public function index()
     {
-        //
-        return view('vendas/artigo/artigo_venda');
-
+        //        
+        $clientes = Cliente::all();
+        return view('vendas/cliente/cliente', compact('clientes'));
     }
 
     /**
@@ -31,12 +27,6 @@ class artigosController extends Controller
     public function create()
     {
         //
-        $artigo = Artigo::all();
-        $unidade = UnidadeBase::all();
-        $tipo_artigo = TipoArtigo::all();
-        $conta_rendimento = ContaRendimento::all();
-        
-        return view('vendas/artigo/criar_artigo', compact('artigo', 'unidade', 'tipo_artigo', 'conta_rendimento'));
     }
 
     /**
@@ -48,18 +38,6 @@ class artigosController extends Controller
     public function store(Request $request)
     {
         //
-        $dados = $request->all();
-
-        $artigo = new Artigo();
-        $artigo->artigo = $request->artigo;
-        $artigo->descricao = $request->descricao;
-        $artigo->tipo_artigo_id = $request->TArtigo;
-        $artigo->unidade_base_id = $request->unidadeBase;
-        $artigo->marca = $request->marca;
-        $artigo->modelo_marca = $request->modelo;
-        $artigo->conta_rendimento_id = $request->modelo;
-        $salvar_artigo = $artigo->save();
-
     }
 
     /**

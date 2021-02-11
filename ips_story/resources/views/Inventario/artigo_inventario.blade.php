@@ -7,33 +7,38 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title">Cliente </strong><small>lista</small>
+                <strong class="card-title">Artigo </strong><small>lista</small>
             </div>
             <div class="card-body">
                 <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size: small;">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Nuit</th>
-                            <th>Email</th>
-                            <th>Pais</th>
-                            <th>Grupo</th>
+                            <th>#</th>
+                            <th>Img</th>
+                            <th>Artigo</th>
+                            <th>Descrição</th>
+                            <th>Quantidade</th>
+                            <th>Valor em stok</th>
+                            <th>Opções</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($clientes as $cliente)
                         <tr>
-                            <td>{{ $cliente->id }}</td>
-                            <td>{{ $cliente->nome }}</td>
-                            <td>{{ $cliente->nuit }}</td>
-                            <td>{{ $cliente->email }}</td>
-                            <td>{{ $cliente->endereco->provincium->pai->nome }}</td>
-                            <td>{{ $cliente->gupo_cliente->descricao }}</td>
+                            <td>1</td>
+                            <td class="avatar">
+                                <div class="round-img" style="height: 30px; width: 30px;">
+                                    <a href="#"><img class="rounded-circle" src="{{ asset('images/avatar/1.jpg') }}" alt=""></a>
+                                
+                                </div></td>
+                            <td>
+                                Glue Stick
+                            </td>
+                            <td>400125698</td>
+                            <td>star</td>
+                            <td>31</td>
+                            <td>0122</td>
+                            <td>80mt</td>
                         </tr>
-                        @empty
-                        <p>Nenhum cliente encontrado</p>
-                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -43,7 +48,7 @@
 </div>
 
 <div class="fixed-action-btn">
-    <a href="{{ route('cliente.create') }}" class="btn-floating btn-large btn-primary">
+    <a href="{{ route('artigo.create') }}" class="btn-floating btn-large btn-primary">
         <i class="ti-plus"></i>
     </a>
 </div>

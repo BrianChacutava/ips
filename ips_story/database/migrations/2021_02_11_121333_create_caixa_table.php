@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContaDeRendimentoTable extends Migration
+class CreateCaixaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateContaDeRendimentoTable extends Migration
      */
     public function up()
     {
-        Schema::create('conta de rendimento', function (Blueprint $table) {
+        Schema::create('caixa', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('conta', 45)->nullable();
             $table->string('descricao', 45)->nullable();
+            $table->string('iban', 45)->nullable();
+            $table->string('swift', 45)->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->unsignedInteger('dados_bancarios_id')->nullable()->index('fk_caixa_dados_bancarios1_idx');
         });
     }
 
@@ -29,6 +31,6 @@ class CreateContaDeRendimentoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conta de rendimento');
+        Schema::dropIfExists('caixa');
     }
 }
