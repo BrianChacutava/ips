@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property User $user
  * @property Collection|Cotacao[] $cotacaos
  * @property Collection|Departamento[] $departamentos
+ * @property Collection|Desspesa[] $desspesas
  * @property Collection|Fatura[] $faturas
  * @property Collection|Venda[] $vendas
  *
@@ -69,6 +70,11 @@ class Funcionario extends Model
 		return $this->belongsToMany(Departamento::class, 'departamento_has_funcionario')
 					->withPivot('id', 'descricao', 'deleted_at')
 					->withTimestamps();
+	}
+
+	public function desspesas()
+	{
+		return $this->hasMany(Desspesa::class);
 	}
 
 	public function faturas()

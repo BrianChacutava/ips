@@ -128,9 +128,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Despesas</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="tables-basic.html">Despesas</a></li>
-                            <li><i class="fa fa-table"></i><a href="tables-data.html">Fornecedores</a></li>
-                            <li><i class="fa fa-table"></i><a href="tables-data.html">Grupos de Fornecedores</a></li>
+                            <li><i class="fa fa-table"></i><a href="{{ route('despesas.index') }}">Despesas</a></li>
+                            {{--  <li><i class="fa fa-table"></i><a href="tables-data.html">Fornecedores</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-data.html">Grupos de Fornecedores</a></li>  --}}
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -148,18 +148,18 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="{{ route('iventario_artigo.index') }}">Artigos</a>
                             </li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Acertos</a>
+                            {{--  <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Acertos</a>
                             <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Transferencia de
                                     Stock</a>
-                            </li>
+                            </li>  --}}
                             {{--  Onde serao gerados e listados doc de Transporte, pedido de espedi. pendente e vencido  --}}
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Espedicao</a>
+                            {{--  <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Espedicao</a>
                             <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Receção de
                                     Mercadoria</a>
-                            </li>
+                            </li>  --}}
                         </ul>
                     </li>
-                    <li class="menu-item-has-children dropdown">
+                    {{--  <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Imposto</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -188,9 +188,9 @@
                             <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Tipos de doc.
                                     Fiscal</a></li>
                         </ul>
-                    </li>
+                    </li>  --}}
 
-                    <li class="menu-item-has-children dropdown">
+                    {{--  <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Resultados</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -198,7 +198,7 @@
                             <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Extr. de Movimentos</a>
                             </li>
                         </ul>
-                    </li>
+                    </li>  --}}
                     <li class="menu-title">Extras</li><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"

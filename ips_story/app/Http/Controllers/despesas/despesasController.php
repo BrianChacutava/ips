@@ -3,6 +3,15 @@
 namespace App\Http\Controllers\despesas;
 
 use App\Http\Controllers\Controller;
+use App\Models\Caixa;
+use App\Models\Desspesa;
+use App\Models\Empresa;
+use App\Models\Fornecedor;
+use App\Models\Funcionario;
+use App\Models\MetodePagamento;
+use App\Models\Moeda;
+use App\Models\RegimeIva;
+use App\Models\TipoDespesa;
 use Illuminate\Http\Request;
 
 class despesasController extends Controller
@@ -15,8 +24,8 @@ class despesasController extends Controller
     public function index()
     {
         //        
-        $clientes = Cliente::all();
-        return view('vendas/cliente/cliente', compact('clientes'));
+        $despesa = Desspesa::all();        
+        return view('despesa/despesa', compact('despesa'));
     }
 
     /**
@@ -27,6 +36,18 @@ class despesasController extends Controller
     public function create()
     {
         //
+        $despesa = Desspesa::all();
+        $fornecedor = Fornecedor::all();
+        $caixa = Caixa::all();
+        $iva = RegimeIva::all();
+        $tipo_despesa = TipoDespesa::all();
+        $moeda = Moeda::all();
+        $metodo_pagamento = MetodePagamento::all();
+        $empresa = Empresa::all();
+        $funcionario = Funcionario::all();
+
+        return view('despesa/criar_despesa', compact('despesa', 'fornecedor', 'caixa', 'iva', 'tipo_despesa', 'moeda', 'metodo_pagamento', 'empresa', 'funcionario'));
+
     }
 
     /**
@@ -35,9 +56,10 @@ class despesasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store1(Request $request)
     {
         //
+        dd($request);
     }
 
     /**

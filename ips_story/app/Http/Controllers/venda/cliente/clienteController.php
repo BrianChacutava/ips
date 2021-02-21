@@ -134,7 +134,7 @@ class clienteController extends Controller
             $cliente_create = $cliente->save();
 
             return redirect()->route('cliente.create')
-                ->with('message', '...Cliente criado');
+                ->with('message', '...Cliente "'.$cliente->nome.'" criado');
 
             } elseif ($request->cliente == 'fornecedor') {
                 // dd('fornacedor');
@@ -215,6 +215,23 @@ class clienteController extends Controller
     public function show($id)
     {
         //
+        // dd('show');
+        $cliente = Cliente::find($id);
+        $fornecedores = Fornecedor::all();
+        $enderecos = Endereco::all();
+        $moedas = Moeda::all();
+        $Pais = Pai::with('provincia')->get();
+        $provincia = Provincium::all();
+        $grupo_cliente = GupoCliente::all();
+        $metodo_pagamento = MetodePagamento::all();
+        $iva = RegimeIva::all();
+        $termo_pagamento = TermoPagamento::all();
+        $regime_pagamento = RegimePagamento::all();
+        $grupo_fornecedor = GupoFornecedor::all();
+
+
+        return view('vendas/cliente/detalhes_cliente', compact('grupo_fornecedor', 'regime_pagamento', 'termo_pagamento', 'iva', 'metodo_pagamento', 'provincia', 'cliente', 'fornecedores', 'enderecos', 'moedas', 'Pais', 'grupo_cliente'));
+    
     }
 
     /**
@@ -226,6 +243,23 @@ class clienteController extends Controller
     public function edit($id)
     {
         //
+        // dd('edit');
+        $cliente = Cliente::find($id);
+        $fornecedores = Fornecedor::all();
+        $enderecos = Endereco::all();
+        $moedas = Moeda::all();
+        $Pais = Pai::with('provincia')->get();
+        $provincia = Provincium::all();
+        $grupo_cliente = GupoCliente::all();
+        $metodo_pagamento = MetodePagamento::all();
+        $iva = RegimeIva::all();
+        $termo_pagamento = TermoPagamento::all();
+        $regime_pagamento = RegimePagamento::all();
+        $grupo_fornecedor = GupoFornecedor::all();
+
+
+        return view('vendas/cliente/edit_cliente', compact('grupo_fornecedor', 'regime_pagamento', 'termo_pagamento', 'iva', 'metodo_pagamento', 'provincia', 'cliente', 'fornecedores', 'enderecos', 'moedas', 'Pais', 'grupo_cliente'));
+    
     }
 
     /**
@@ -235,9 +269,63 @@ class clienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update1(Request $request, $id)
     {
         //
+        // dd('update');
+        $dados = $request->all();
+        $cliente = Cliente::find($id);
+
+        // dd($request);
+
+
+        if ($request->cliente_alterar == 'cliente_alterar') {
+            // dd('cliente');
+
+
+            // criar endereço
+            $endereco = Endereco::find($cliente->endereco_id);
+            $endereco->rua = $request->rua;
+            $endereco->av = $request->avenida;
+            if($request->provincia != ""){
+                $endereco->provincia_id = $request->provincia;
+            }
+            $endereco->cod_postal = $request->codigoP;
+            $endereco->bairo = $request->bairo;
+            $endereco->blockeado = 0;
+            $endereco->save();
+
+
+            // Criar Cliente
+            $cliente->nome = $request->nome;
+            $cliente->nuit = $request->nuit;
+            $cliente->sigla = $request->sigla;
+            $cliente->telefone = $request->telefone;
+            $cliente->email = $request->email;
+            $cliente->website = $request->website;
+
+            if($request->moeda != ""){
+            $cliente->moeda_id = $request->moeda;
+            }
+            $cliente->endereco_id = Endereco::all()->last()->id;
+            if($request->gpcliente != ""){
+                $cliente->gupo_cliente_id = $request->gpcliente;
+            }
+            if($request->MtpagamentoC != ""){
+                $cliente->metode_pagamento_id = $request->MtpagamentoC;
+            }
+            if($request->RpagamentoC != ""){
+                $cliente->regime_pagamento_id = $request->RpagamentoC;
+            }
+            if($request->regimeC != ""){
+                $cliente->Regime_iva_id = $request->regimeC;
+            }
+            $cliente_create = $cliente->save();
+
+            return redirect()->route('cliente.index')
+                ->with('message', '...Cliente "'.$cliente->nome.'" alterado');
+
+            }
     }
 
     /**
@@ -246,8 +334,14 @@ class clienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy1($id)
     {
         //
+        // dd('destroy');
+        $cliente = Cliente::find($id);
+        $delete = $cliente->delete();
+
+        return redirect()->route('cliente.index')
+        ->with('message', 'Cliente "'.$cliente->nome.'" Eliminado');
     }
 }

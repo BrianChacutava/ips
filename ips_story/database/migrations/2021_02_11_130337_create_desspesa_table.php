@@ -26,6 +26,8 @@ class CreateDesspesaTable extends Migration
             $table->unsignedInteger('caixa_id')->nullable()->index('fk_desspesa_caixa1_idx');
             $table->unsignedInteger('Regime_iva_id')->nullable()->index('fk_desspesa_Regime_iva1_idx');
             $table->unsignedInteger('empresa_id')->nullable()->index('fk_desspesa_empresa1_idx');
+            $table->float('valor_total', 10, 0)->nullable();
+            $table->unsignedInteger('funcionario_id')->nullable()->index('fk_desspesa_funcionario1_idx');
             $table->timestamps();
             $table->softDeletes();
         });

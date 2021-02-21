@@ -19,7 +19,11 @@ class artigosController extends Controller
     public function index()
     {
         //
-        return view('vendas/artigo/artigo_venda');
+        $artigo = Artigo::all();
+        $unidade = UnidadeBase::all();
+        $tipo_artigo = TipoArtigo::all();
+        $conta_rendimento = ContaRendimento::all();
+        return view('vendas/artigo/artigo_venda', compact('artigo', 'unidade', 'tipo_artigo', 'conta_rendimento'));
 
     }
 
@@ -45,10 +49,9 @@ class artigosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store1(Request $request)
     {
-        //
-        $dados = $request->all();
+        // dd($request);
 
         $artigo = new Artigo();
         $artigo->artigo = $request->artigo;
@@ -59,7 +62,9 @@ class artigosController extends Controller
         $artigo->modelo_marca = $request->modelo;
         $artigo->conta_rendimento_id = $request->modelo;
         $salvar_artigo = $artigo->save();
-
+        
+        return redirect()->route('artigo.index')
+        ->with('message', '...Artigo "'.$artigo->artigo.'" criado');
     }
 
     /**

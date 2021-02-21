@@ -15,26 +15,27 @@
                 role="tab" aria-controls="custom-nav-inventario" aria-selected="false">Inventario</a>
         </div>
     </nav>
-    <div class="tab-content pl-3 pt-2" id="nav-tabContent">
+    <form action="{{ route('artigo.store1') }}">
+        <div class="tab-content pl-3 pt-2" id="nav-tabContent">
         <div class="tab-pane fade active show" id="custom-nav-geral" role="tabpanel"
             aria-labelledby="custom-nav-geral-tab">
 
             {{-- <div class="row"> --}}
             {{-- <div class="col-lg-12"> --}}
             <div class="card">
-                <div class="card-header"><strong>Criar</strong><small> Artigo</small></div>
+                <div class="card-header"><strong>Criar</strong><small> Artigo/ Serviço</small></div>
                 <div class="card-body card-block">
 
                     <div class="row form-group">
 
                         <div class="col col-sm-4"><label for="nome"
-                                class=" form-control-label"><small>Artigo</small></label><input type="text" id="company"
+                                class=" form-control-label"><small>Artigo/ Serviço</small></label><input type="text" id="company"
                                 placeholder="Digite o nome" name="artigo" class="input-sm form-control-sm form-control">
                         </div>
 
                         <div class="col col-sm-8"><label for="vat"
                                 class=" form-control-label"><small>Descrição</small></label><textarea
-                                name="descricao" id="textarea-input" rows="3" placeholder="Descrição..."
+                                name="descricao" id="textarea-input" rows="2" placeholder="Descrição..."
                                 class="form-control"></textarea></div>
 
 
@@ -54,26 +55,28 @@
 
                         <div class="col-lg-4">
                             <label for="vat" class=" form-control-label"><small>Tipo de Artigo</small></label>
-                            <select data-placeholder="Escolha Moeda" name="TArtigo" class="standardSelect" tabindex="2">
+                            <select data-placeholder="Escolha Tipo de Artigo" name="TArtigo" class="standardSelect" tabindex="2">
 
+                                <option value=""></option>
                                 @forelse ($tipo_artigo as $tipo_artigos)
 
                                 <option value="{{ $tipo_artigos->id }}">{{ $tipo_artigos->tipo }}</option>
                                 @empty
-                                <p>Nenhum unidade inserida</p>
+                                <p>Nenhum Tipo de Artigo</p>
                                 @endforelse
                             </select>
                         </div>
 
                         <div class="col-lg-4">
                             <label for="vat" class=" form-control-label"><small>Conta_Rendimento</small></label>
-                            <select data-placeholder="Escolha Moeda" name="contaRendimento" class="standardSelect" tabindex="2">
+                            <select data-placeholder="Escolha conta de Rendimento" name="contaRendimento" class="standardSelect" tabindex="2">
 
-                                @forelse ($tipo_artigo as $tipo_artigos)
+                                <option value=""></option>
+                                @forelse ($conta_rendimento as $conta_rendimentos)
 
-                                <option value="{{ $tipo_artigos->id }}">{{ $tipo_artigos->tipo }}</option>
+                                <option value="{{ $conta_rendimentos->id }}">{{ $conta_rendimentos->tipo }}</option>
                                 @empty
-                                <p>Nenhum unidade inserida</p>
+                                <p>Nenhuma conta de Rendimento</p>
                                 @endforelse
                             </select>
                         </div>
@@ -113,7 +116,7 @@
             {{-- <div class="row"> --}}
 
             <div class="col-lg-12">
-                <button type="submit" class="btn btn-primary btn-sm" style="float: right">Guardar e Novo</button>
+                <button type="submit" class="btn btn-primary btn-sm" style="float: right">Criar</button>
 
             </div>
 
@@ -277,7 +280,7 @@
             </div>
 
         </div>
-
+    </form>
     </div>
 
 

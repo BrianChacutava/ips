@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int|null $caixa_id
  * @property int|null $Regime_iva_id
  * @property int|null $empresa_id
+ * @property float|null $valor_total
+ * @property int|null $funcionario_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
@@ -33,6 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Caixa|null $caixa
  * @property Empresa|null $empresa
  * @property Fornecedor|null $fornecedor
+ * @property Funcionario|null $funcionario
  * @property MetodePagamento|null $metode_pagamento
  * @property Moeda|null $moeda
  * @property TipoDespesa|null $tipo_despesa
@@ -53,7 +56,9 @@ class Desspesa extends Model
 		'metode_pagamento_id' => 'int',
 		'caixa_id' => 'int',
 		'Regime_iva_id' => 'int',
-		'empresa_id' => 'int'
+		'empresa_id' => 'int',
+		'valor_total' => 'float',
+		'funcionario_id' => 'int'
 	];
 
 	protected $fillable = [
@@ -67,7 +72,9 @@ class Desspesa extends Model
 		'metode_pagamento_id',
 		'caixa_id',
 		'Regime_iva_id',
-		'empresa_id'
+		'empresa_id',
+		'valor_total',
+		'funcionario_id'
 	];
 
 	public function regime_iva()
@@ -88,6 +95,11 @@ class Desspesa extends Model
 	public function fornecedor()
 	{
 		return $this->belongsTo(Fornecedor::class);
+	}
+
+	public function funcionario()
+	{
+		return $this->belongsTo(Funcionario::class);
 	}
 
 	public function metode_pagamento()

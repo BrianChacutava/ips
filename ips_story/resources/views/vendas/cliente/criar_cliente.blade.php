@@ -443,7 +443,6 @@
             html += "<option value='"+value.id+"'>"+value.nome+"</option>"
 
             });
-            alert(html)
 
             jQuery('select#provincia.standardSelect').html(html);
             console.log(jQuery('select#provincia'));

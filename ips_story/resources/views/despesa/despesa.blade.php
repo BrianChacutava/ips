@@ -7,37 +7,39 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title">Artigo </strong><small>lista</small>
+                <strong class="card-title">Despesas </strong><small>lista</small>
             </div>
             <div class="card-body">
                 <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size: small;">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Img</th>
-                            <th>Artigo</th>
-                            <th>Armazem</th>
-                            <th>Quantidade</th>
-                            <th>Valor em stok</th>
-                            <th>Opções</th>
+                            <th>ID</th>
+                            <th>Estado de Pagamento</th>
+                            <th>Data</th>
+                            <th>Despesa</th>
+                            <th>Nome Do Fornecedor</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($despesa as $despesas)
                         <tr>
-                            <td>1</td>
-                            <td class="avatar">
-                                <div class="round-img" style="height: 30px; width: 30px;">
-                                    <a href="#"><img class="rounded-circle" src="{{ asset('images/avatar/1.jpg') }}" alt=""></a>
-                                
-                                </div></td>
-                            <td>
-                                Glue Stick
+                            <td>{{ $despesas->id }}</td>
+                            <td> 
+                                @if($despesas->pago != 1)
+                                pago 
+                                @else
+                                Não Pago
+                                @endif                                         
                             </td>
-                            <td>armazem1</td>
-                            <td>star</td>
-                            <td>31</td>
-                            <td>0122</td>
+                            <td>{{ $despesas->created_at }}</td>
+                            <td>{{ $despesas->referencia }}</td>
+                            <td>{{ $despesas->fornecedor->nome }}</td>
+                            <td>{{ $despesas->valor_total }}</td>
                         </tr>
+                        @empty
+                        <p>Nenhuma despesa encontrada</p>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -47,7 +49,7 @@
 </div>
 
 <div class="fixed-action-btn">
-    <a href="{{ route('artigo.create') }}" class="btn-floating btn-large btn-primary">
+    <a href="{{ route('despesas.create') }}" class="btn-floating btn-large btn-primary">
         <i class="ti-plus"></i>
     </a>
 </div>

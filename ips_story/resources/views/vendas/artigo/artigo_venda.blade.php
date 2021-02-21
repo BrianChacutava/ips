@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('message'))
+    <div class="alert alert-success fade show" role="alert">Sucess. <a href="javascript:void(0);"
+            class="alert-link">{{ session('message') }}</a>
+    </div>
+    @endif
 
 <div class="row">
 
@@ -19,27 +24,45 @@
                             <th>Descrição</th>
                             <th>Marca</th>
                             <th>Modelo</th>
-                            <th>Codigo de Barra</th>
-                            <th>Preco</th>
+                            <th>Tipo de Artigo</th>
+                            <th>Opções</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($artigo as $artigos)
                         <tr>
-                            <td>1</td>
+                            <td>{{ $artigos->id }}</td>
                             <td class="avatar">
                                 <div class="round-img" style="height: 30px; width: 30px;">
                                     <a href="#"><img class="rounded-circle" src="{{ asset('images/avatar/1.jpg') }}" alt=""></a>
                                 
                                 </div></td>
                             <td>
-                                Glue Stick
+                                {{ $artigos->artigo }}
                             </td>
-                            <td>400125698</td>
-                            <td>star</td>
-                            <td>31</td>
-                            <td>0122</td>
-                            <td>80mt</td>
+                            <td>{{ $artigos->descricao }}</td>
+                            <td>{{ $artigos->marca }}</td>
+                            <td>{{ $artigos->modelo_marca }}</td>
+                            <td>{{ $artigos->tipo_artigo->tipo }}</td>
+                            <td>
+                                <a href="{{ route('artigo.show',$artigos->id) }}"
+                                    class="btn btn-info btn-sm">
+                                    <i class=" fa fa-eye"></i>
+                                </a>
+                                <a href="{{ route('artigo.edit',$artigos->id) }}"
+                                    class="btn btn-warning btn-sm">
+                                    <i class=" pe-7s-edit"></i>
+                                </a>
+                                <a href="{{ route('artigo.destroy',$artigos->id) }}"
+                                    onclick="return confirm('Tem sertesa que deseja eliminar')"
+                                    class="delete-modal btn btn-danger btn-sm">
+                                    <i class=" fa fa-trash"></i>
+                                </a>
+                            </td>
                         </tr>
+                        @empty
+                        <p>Nenhum cliente encontrado</p>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
