@@ -7,8 +7,18 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\Moeda;
+use App\Models\Venda;
+use App\Models\Fatura;
+use App\Models\Cotacao;
+use App\Models\Endereco;
+use App\Models\RegimeIva;
+use App\Models\GupoCliente;
+use App\Models\MetodePagamento;
+use App\Models\RegimePagamento;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -121,5 +131,9 @@ class Cliente extends Model
 	public function vendas()
 	{
 		return $this->hasMany(Venda::class);
+	}
+
+	public function fotoUrl(){
+		// return Storage::disk('public')->url($this->foto);u
 	}
 }

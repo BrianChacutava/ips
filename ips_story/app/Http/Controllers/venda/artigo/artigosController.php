@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\venda\artigo;
 
 use App\Http\Controllers\Controller;
+use App\Models\Armazem;
+use App\Models\ArmazemHasArtigo;
 use App\Models\Artigo;
 use App\Models\ContaRendimento;
+use App\Models\Empresa;
+use App\Models\GrupoPreco;
+use App\Models\Preco;
 use App\Models\TipoArtigo;
 use App\Models\UnidadeBase;
 use Illuminate\Http\Request;
@@ -60,7 +65,7 @@ class artigosController extends Controller
         $artigo->unidade_base_id = $request->unidadeBase;
         $artigo->marca = $request->marca;
         $artigo->modelo_marca = $request->modelo;
-        $artigo->conta_rendimento_id = $request->modelo;
+        $artigo->conta_rendimento_id = $request->contaRendimento;
         $salvar_artigo = $artigo->save();
         
         return redirect()->route('artigo.index')
@@ -87,6 +92,45 @@ class artigosController extends Controller
     public function edit($id)
     {
         //
+        
+        $artigo = Artigo::find($id);
+        $unidade = UnidadeBase::all();
+        $tipo_artigo = TipoArtigo::all();
+        $conta_rendimento = ContaRendimento::all();
+        $preco = Preco::all();
+        $grupo_preco = GrupoPreco::all();
+        $armazem = Armazem::all();
+        $empresa = Empresa::all();
+        $armazem_artigo = ArmazemHasArtigo::all();
+        
+        return view('vendas/artigo/edit_artigo', compact('empresa','armazem', 'armazem_artigo', 'artigo', 'unidade', 'tipo_artigo', 'conta_rendimento', 'preco', 'grupo_preco'));
+    
+    }
+
+    public function add_preco(Request $request, $id)
+    {
+        //
+        // dd($request);
+        $preco = new Preco();
+        $preco->preco = $request->preco;
+        $preco->grupo_preco_id = $request->gpreco;
+        $preco->artigo_id = $request->artigo_id;
+        $preco->quantidade = $request->quantidade;
+        $preco->ativo = 1;
+        $preco->save();
+        
+        return redirect()->route('artigo.edit',$request->artigo_id);
+    }
+
+    public function alterar_status_preco($status, $preco_id, $artigo_id)
+    {
+        //
+        // dd($request);
+        $preco = Preco::find($preco_id);
+        $preco->ativo = $status;
+        $preco->save();
+        
+        return redirect()->route('artigo.edit',$artigo_id);
     }
 
     /**

@@ -115,7 +115,7 @@
                             <li><i class="fa fa-group"></i><a href="{{ route('cliente.index') }}">Clientes</a></li>
                             <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('artigo.index') }}">Artigos de Vendas</a></li>
                             <li><i class="fa fa-id-badge"></i><a href="{{ route('orcamento.index') }}">Orcamentos</a></li>
-                            <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Faturas</a></li>
+                            <li><i class="fa fa-bars"></i><a href="{{ route('fatura.index') }}">Faturas</a></li>
 
                             <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Notas de Credito ou Debito</a>
                             </li>

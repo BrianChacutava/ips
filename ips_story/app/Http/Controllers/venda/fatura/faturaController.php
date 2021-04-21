@@ -13,6 +13,7 @@ use App\Models\CotacaoHasArtigo1;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\EmpresaHasDadosBancario;
+use App\Models\Fatura;
 
 class cotacaoController extends Controller
 {
@@ -24,9 +25,9 @@ class cotacaoController extends Controller
     public function index()
     {
         //
-        $orcamento = Cotacao::all()->where('validado','<>',null);
+        $faturas = Fatura::all();
 
-        return view('vendas/orcamento/cotacao', compact('orcamento'));
+        return view('vendas/fatura/fatura', compact('faturas'));
     }
 
 

@@ -17,7 +17,7 @@
                             <th>Estado de Pagamento</th>
                             <th>Data</th>
                             <th>Despesa</th>
-                            <th>Nome Do Fornecedor</th>
+                            <th>Conta de Pagamento</th>
                             <th>Total</th>
                         </tr>
                     </thead>
@@ -27,14 +27,14 @@
                             <td>{{ $despesas->id }}</td>
                             <td> 
                                 @if($despesas->pago != 1)
-                                pago 
-                                @else
                                 Não Pago
+                                @else
+                                pago 
                                 @endif                                         
                             </td>
                             <td>{{ $despesas->created_at }}</td>
                             <td>{{ $despesas->referencia }}</td>
-                            <td>{{ $despesas->fornecedor->nome }}</td>
+                            <td>{{ $despesas->caixa->descricao }}</td>
                             <td>{{ $despesas->valor_total }}</td>
                         </tr>
                         @empty

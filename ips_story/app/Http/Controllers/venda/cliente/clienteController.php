@@ -6,17 +6,18 @@ use App\Models\Pai;
 use App\Models\Moeda;
 use App\Models\Cliente;
 use App\Models\Endereco;
+use App\Models\RegimeIva;
 use App\Models\Fornecedor;
 use App\Models\Provincium;
 use App\Models\GupoCliente;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\DadosBancario;
 use App\Models\GupoFornecedor;
-use App\Models\MetodePagamento;
-use App\Models\RegimeIva;
-use App\Models\RegimePagamento;
 use App\Models\TermoPagamento;
+use App\Models\MetodePagamento;
+use App\Models\RegimePagamento;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class clienteController extends Controller
 {
@@ -278,6 +279,17 @@ class clienteController extends Controller
 
         // dd($request);
 
+            
+        // php artisan storage:link
+        // Route::match(['get', 'post'],'/venda/Cliente/update/{id}', 'venda\cliente\clienteController@update1')->name('cliente.update1');
+        if ($request->hasFile('foto')) {
+            $file =  Storage::disk('public')->put('profiles', $request->file('foto'));
+            $cliente->foto = $file;
+            $cliente->save();
+            return response()->json([
+                'filename' => $file,
+            ]);
+        } 
 
         if ($request->cliente_alterar == 'cliente_alterar') {
             // dd('cliente');

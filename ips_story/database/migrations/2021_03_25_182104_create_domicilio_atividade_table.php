@@ -21,6 +21,7 @@ class CreateDomicilioAtividadeTable extends Migration
             $table->string('email', 45)->nullable();
             $table->string('email_alternativo', 45)->nullable();
             $table->unsignedInteger('endereco_id')->index('fk_domicilio_atividade_endereco1_idx');
+            $table->string('website', 45)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

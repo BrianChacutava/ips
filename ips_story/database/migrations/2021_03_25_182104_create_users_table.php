@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedInteger('categoria_usuario_id')->nullable()->index('fk_user_categoria_usuario1_idx');
+            $table->tinyInteger('ativo')->nullable();
         });
     }
 

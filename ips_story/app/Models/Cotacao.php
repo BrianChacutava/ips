@@ -22,8 +22,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $funcionario_id
  * @property int $termo_pagamento_id
  * @property Carbon|null $limite_pagamento
- * @property int|null $quantidade
- * @property float|null $preco_unitario
  * @property float|null $desconto
  * @property int $regime_pagamento_id
  * @property int $Regime_iva_id
@@ -34,6 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
+ * @property Carbon|null $validado
  * 
  * @property RegimeIva $regime_iva
  * @property Cliente $cliente
@@ -41,7 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Funcionario $funcionario
  * @property RegimePagamento $regime_pagamento
  * @property TermoPagamento $termo_pagamento
- * @property Collection|ArtigoHasPreco[] $artigo_has_precos
+ * @property Collection|Artigo[] $artigos
  *
  * @package App\Models
  */
@@ -57,8 +56,6 @@ class Cotacao extends Model
 		'validade' => 'int',
 		'funcionario_id' => 'int',
 		'termo_pagamento_id' => 'int',
-		'quantidade' => 'int',
-		'preco_unitario' => 'float',
 		'desconto' => 'float',
 		'regime_pagamento_id' => 'int',
 		'Regime_iva_id' => 'int',
@@ -68,7 +65,8 @@ class Cotacao extends Model
 	];
 
 	protected $dates = [
-		'limite_pagamento'
+		'limite_pagamento',
+		'validado'
 	];
 
 	protected $fillable = [
@@ -79,15 +77,14 @@ class Cotacao extends Model
 		'funcionario_id',
 		'termo_pagamento_id',
 		'limite_pagamento',
-		'quantidade',
-		'preco_unitario',
 		'desconto',
 		'regime_pagamento_id',
 		'Regime_iva_id',
 		'subtotal',
 		'iva',
 		'total',
-		'estado'
+		'estado',
+		'validado'
 	];
 
 	public function regime_iva()
@@ -120,10 +117,10 @@ class Cotacao extends Model
 		return $this->belongsTo(TermoPagamento::class);
 	}
 
-	public function artigo_has_precos()
+	public function artigos()
 	{
-		return $this->belongsToMany(ArtigoHasPreco::class, 'cotacao_has_artigo_has_preco')
-					->withPivot('id', 'preço', 'quantidade', 'deleted_at')
+		return $this->belongsToMany(Artigo::class, 'cotacao_has_artigo1')
+					->withPivot('id', 'preco', 'quantidade', 'desconto', 'deleted_at', 'total')
 					->withTimestamps();
 	}
 }

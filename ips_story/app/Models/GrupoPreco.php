@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * 
- * @property Collection|ArtigoHasPreco[] $artigo_has_precos
+ * @property Collection|Preco[] $precos
  *
  * @package App\Models
  */
@@ -33,8 +33,8 @@ class GrupoPreco extends Model
 		'descricao'
 	];
 
-	public function artigo_has_precos()
+	public function precos()
 	{
-		return $this->hasMany(ArtigoHasPreco::class);
+		return $this->hasMany(Preco::class);
 	}
 }

@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * @property int|null $categoria_usuario_id
+ * @property int|null $ativo
  * 
  * @property CategoriaUsuario|null $categoria_usuario
  * @property Collection|Funcionario[] $funcionarios
@@ -39,7 +40,8 @@ class User extends Model
 	protected $table = 'users';
 
 	protected $casts = [
-		'categoria_usuario_id' => 'int'
+		'categoria_usuario_id' => 'int',
+		'ativo' => 'int'
 	];
 
 	protected $dates = [
@@ -58,7 +60,8 @@ class User extends Model
 		'foto',
 		'email_verified_at',
 		'remember_token',
-		'categoria_usuario_id'
+		'categoria_usuario_id',
+		'ativo'
 	];
 
 	public function categoria_usuario()

@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $email
  * @property string|null $email_alternativo
  * @property int $endereco_id
+ * @property string|null $website
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
@@ -45,7 +46,8 @@ class DomicilioAtividade extends Model
 		'fax',
 		'email',
 		'email_alternativo',
-		'endereco_id'
+		'endereco_id',
+		'website'
 	];
 
 	public function endereco()

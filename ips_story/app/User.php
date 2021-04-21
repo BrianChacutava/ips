@@ -53,9 +53,9 @@ class User extends Authenticatable
 		return $this->belongsTo(CategoriaUsuario::class);
 	}
 
-	public function funcionarios()
+	public function funcionario()
 	{
-		return $this->hasMany(Funcionario::class);
+		return $this->hasOne(Funcionario::class, 'user_id');
 	}
 
 	public function logins()

@@ -11,42 +11,39 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Preco
+ * Class CotacaoHasArtigo
  * 
  * @property int $id
- * @property float|null $preco
- * @property int|null $grupo_preco_id
- * @property int|null $artigo_id
+ * @property int $cotacao_id
+ * @property int $artigo_id
+ * @property float|null $preço
  * @property float|null $quantidade
- * @property int|null $ativo
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * 
- * @property Artigo|null $artigo
- * @property GrupoPreco|null $grupo_preco
+ * @property Artigo $artigo
+ * @property Cotacao $cotacao
  *
  * @package App\Models
  */
-class Preco extends Model
+class CotacaoHasArtigo extends Model
 {
 	use SoftDeletes;
-	protected $table = 'preco';
+	protected $table = 'cotacao_has_artigo';
 
 	protected $casts = [
-		'preco' => 'float',
-		'grupo_preco_id' => 'int',
+		'cotacao_id' => 'int',
 		'artigo_id' => 'int',
-		'quantidade' => 'float',
-		'ativo' => 'int'
+		'preço' => 'float',
+		'quantidade' => 'float'
 	];
 
 	protected $fillable = [
-		'preco',
-		'grupo_preco_id',
+		'cotacao_id',
 		'artigo_id',
-		'quantidade',
-		'ativo'
+		'preço',
+		'quantidade'
 	];
 
 	public function artigo()
@@ -54,8 +51,8 @@ class Preco extends Model
 		return $this->belongsTo(Artigo::class);
 	}
 
-	public function grupo_preco()
+	public function cotacao()
 	{
-		return $this->belongsTo(GrupoPreco::class);
+		return $this->belongsTo(Cotacao::class);
 	}
 }

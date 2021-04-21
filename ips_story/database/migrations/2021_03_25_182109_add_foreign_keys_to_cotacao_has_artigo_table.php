@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeysToCotacaoHasArtigoHasPrecoTable extends Migration
+class AddForeignKeysToCotacaoHasArtigoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddForeignKeysToCotacaoHasArtigoHasPrecoTable extends Migration
      */
     public function up()
     {
-        Schema::table('cotacao_has_artigo_has_preco', function (Blueprint $table) {
-            $table->foreign('artigo_has_preco_id', 'fk_cotacao_has_artigo_has_preco_artigo_has_preco1')->references('id')->on('artigo_has_preco')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+        Schema::table('cotacao_has_artigo', function (Blueprint $table) {
+            $table->foreign('artigo_id', 'fk_cotacao_has_artigo_has_preco_artigo1')->references('id')->on('artigo')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign('cotacao_id', 'fk_cotacao_has_artigo_has_preco_cotacao1')->references('id')->on('cotacao')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
@@ -26,8 +26,8 @@ class AddForeignKeysToCotacaoHasArtigoHasPrecoTable extends Migration
      */
     public function down()
     {
-        Schema::table('cotacao_has_artigo_has_preco', function (Blueprint $table) {
-            $table->dropForeign('fk_cotacao_has_artigo_has_preco_artigo_has_preco1');
+        Schema::table('cotacao_has_artigo', function (Blueprint $table) {
+            $table->dropForeign('fk_cotacao_has_artigo_has_preco_artigo1');
             $table->dropForeign('fk_cotacao_has_artigo_has_preco_cotacao1');
         });
     }

@@ -19,7 +19,7 @@ class CreateDesspesaTable extends Migration
             $table->unsignedInteger('tipo_despesa_id')->nullable()->index('fk_desspesa_tipo_despesa1_idx');
             $table->tinyInteger('pago')->nullable();
             $table->float('taxa_cambio', 10, 0)->nullable();
-            $table->string('observacao', 45)->nullable();
+            $table->string('observacao', 100)->nullable();
             $table->unsignedInteger('fornecedor_id')->nullable()->index('fk_desspesa_fornecedor1_idx');
             $table->unsignedInteger('moeda_id')->nullable()->index('fk_desspesa_moeda1_idx');
             $table->unsignedInteger('metode_pagamento_id')->nullable()->index('fk_desspesa_metode_pagamento1_idx');

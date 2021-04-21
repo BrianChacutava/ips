@@ -22,8 +22,6 @@ class CreateCotacaoTable extends Migration
             $table->unsignedInteger('funcionario_id')->index('fk_cotacao_funcionario1_idx');
             $table->unsignedInteger('termo_pagamento_id')->index('fk_cotacao_termo_pagamento1_idx');
             $table->date('limite_pagamento')->nullable();
-            $table->integer('quantidade')->nullable();
-            $table->float('preco_unitario', 10, 0)->nullable();
             $table->float('desconto', 10, 0)->nullable();
             $table->unsignedInteger('regime_pagamento_id')->index('fk_cotacao_regime_pagamento1_idx');
             $table->unsignedInteger('Regime_iva_id')->index('fk_cotacao_Regime_iva1_idx');
@@ -33,6 +31,7 @@ class CreateCotacaoTable extends Migration
             $table->string('estado', 45)->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->timestamp('validado')->nullable();
         });
     }
 

@@ -28,12 +28,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
- * @property int $endereco_id
- * @property int $gupo_fornecedor_id
+ * @property int|null $endereco_id
+ * @property int|null $gupo_fornecedor_id
  * 
  * @property RegimeIva|null $regime_iva
- * @property Endereco $endereco
- * @property GupoFornecedor $gupo_fornecedor
+ * @property Endereco|null $endereco
+ * @property GupoFornecedor|null $gupo_fornecedor
  * @property MetodePagamento|null $metode_pagamento
  * @property RegimePagamento|null $regime_pagamento
  * @property Collection|Desspesa[] $desspesas

@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\despesas;
 
-use App\Http\Controllers\Controller;
 use App\Models\Caixa;
-use App\Models\Desspesa;
+use App\Models\Moeda;
 use App\Models\Empresa;
+use App\Models\Desspesa;
+use App\Models\RegimeIva;
 use App\Models\Fornecedor;
 use App\Models\Funcionario;
-use App\Models\MetodePagamento;
-use App\Models\Moeda;
-use App\Models\RegimeIva;
 use App\Models\TipoDespesa;
 use Illuminate\Http\Request;
+use App\Models\MetodePagamento;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class despesasController extends Controller
 {
@@ -59,7 +60,28 @@ class despesasController extends Controller
     public function store1(Request $request)
     {
         //
-        dd($request);
+        // dd($request);
+        $despesa = new Desspesa();
+
+        $despesa->referencia = $request->referencia;
+        $despesa->tipo_despesa_id = $request->tipo_despesa_id;
+        $despesa->pago = $request->pago;
+        // $despesa->taxa_cambio = $request->taxa_cambio;
+        $despesa->observacao = $request->observacao;
+        $despesa->fornecedor_id = $request->fornecedor_id;
+        $despesa->moeda_id = $request->moeda_id;
+        $despesa->metode_pagamento_id = $request->metode_pagamento_id;
+        $despesa->caixa_id = $request->caixa_id;
+        $despesa->Regime_iva_id = $request->Regime_iva_id;
+        $despesa->empresa_id =  Auth::user()->funcionario->departamentos()->first()->empresa->id;
+        $despesa->funcionario_id = $request->funcionario_id;
+        $despesa->valor_total = $request->valor_total;
+
+        $despesa->save();
+
+        return redirect()->route('despesas.index')
+            ->with('message', '...Despesa de"'.$despesa->referencia.'" Cadastrada');
+
     }
 
     /**

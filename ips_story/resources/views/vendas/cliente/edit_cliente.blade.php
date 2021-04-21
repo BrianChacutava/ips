@@ -3,12 +3,20 @@
 @section('content')
 
 @if (session('message'))
-    <div class="alert alert-success fade show" role="alert">Sucess. <a href="javascript:void(0);"
-            class="alert-link">{{ session('message') }}</a>
-    </div>
-    @endif
+<div class="alert alert-success fade show" role="alert">Sucess. <a href="javascript:void(0);"
+        class="alert-link">{{ session('message') }}</a>
+</div>
+@endif
 
 <div class="custom-tab">
+
+    <div class="card-header user-header alt bg-dark col-lg-2">
+        <div class="media-body">
+            <a href="#">
+                <img class="align-self-center rounded-right rounded-left mr-3" style="width:100%; height:100;" alt="" src="{{ asset('storage/'.$cliente->foto) }}">
+            </a>
+        </div>
+    </div>
 
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -21,78 +29,106 @@
 
     <form action="{{ route('cliente.update1',$cliente->id) }}">
 
-    <div class="tab-content pl-3 pt-2" id="nav-tabContent">
+        <div class="tab-content pl-3 pt-2" id="nav-tabContent">
             {{--  geral  --}}
             <div class="tab-pane fade active show" id="custom-nav-geral" role="tabpanel"
                 aria-labelledby="custom-nav-geral-tab">
 
+                <div class="row">
 
+                    <div class="col-xl-6">
 
-                <div class="card">
-                    <div class="card-header"><strong>Editar</strong><small> Entidade</small></div>
+                        <div class="card">
 
-                    {!! csrf_field() !!}
+                            <div class="card-header"><strong>Editar</strong><small> Entidade</small></div>
 
-                    <div class="card-body card-block">
-                        <div class="row form-group">
+                            {!! csrf_field() !!}
 
-                            <div class="col col-sm-4"><label for="nome"
-                                    class=" form-control-label"><small>Nome</small></label><input type="text"
-                                    name="nome" id="nome" placeholder="Digite o nome" value="{{ $cliente->nome }}"
-                                    class="input-sm form-control-sm form-control">
-                            </div>
-
-                            <div class="col col-sm-4"><label for="sigla"
-                                    class=" form-control-label"><small>Sigla</small></label><input type="text"
-                                    name="sigla" id="sigla" placeholder="Digite a sigla" value="{{ $cliente->sigla }}"
-                                    class="input-sm form-control-sm form-control">
-                            </div>
-
-                            <div class="col col-sm-4"><label for="nuit"
-                                    class=" form-control-label"><small>NUIT</small></label><input type="text"
-                                    name="nuit" id="vat" placeholder="Digite o nuite" value="{{ $cliente->nuit }}"
-                                    class="input-sm form-control-sm form-control">
-                            </div>
-
-
-
-                                    <div class="col col-sm-4"><label for="email"
-                                        class=" form-control-label"><small>Email</small></label><input type="email"
-                                        name="email" id="vat" placeholder="Digite o email" value="{{ $cliente->email }}"
-                                        class="input-sm form-control-sm form-control">
+                            <div class="card-body card-block">
+                                <div class="row form-group">
+                                    <div class="col col-sm-12"><label for="nome"
+                                            class=" form-control-label"><small>Nome</small></label><input type="text"
+                                            name="nome" id="nome" placeholder="Digite o nome"
+                                            value="{{ $cliente->nome }}" class="input-sm form-control-sm form-control">
                                     </div>
 
-                                    <div class="col col-sm-4"><label for="email"
-                                        class=" form-control-label"><small>Moeda</small></label><input type="Moeda"
-                                        name="Moeda" id="vat"  value="{{ $cliente->moeda->sigla }}"
-                                        class="input-sm form-control-sm form-control" disabled="">
+                                    <div class="col col-sm-6"><label for="sigla"
+                                            class=" form-control-label"><small>Sigla</small></label><input type="text"
+                                            name="sigla" id="sigla" placeholder="Digite a sigla"
+                                            value="{{ $cliente->sigla }}" class="input-sm form-control-sm form-control">
                                     </div>
-                                    <div class="col-lg-4">
-                                        <label for="vat" class=" form-control-label"><small>Alterar Moeda</small></label>
-                                        <select data-placeholder="Escolha o clientes..." name="moeda" class="standardSelect"
-                                    tabindex="1">
-                                            <option value="" label="default"></option>
-                                            
+
+                                    <div class="col col-sm-6"><label for="nuit"
+                                            class=" form-control-label"><small>NUIT</small></label><input type="text"
+                                            name="nuit" id="vat" placeholder="Digite o nuite"
+                                            value="{{ $cliente->nuit }}" class="input-sm form-control-sm form-control">
+                                    </div>
+
+                                    <div class="col col-sm-12"><label for="email"
+                                            class=" form-control-label"><small>Email</small></label><input type="email"
+                                            name="email" id="vat" placeholder="Digite o email"
+                                            value="{{ $cliente->email }}" class="input-sm form-control-sm form-control">
+                                    </div>
+
+                                    <div class="col col-sm-6"><label for="email"
+                                            class=" form-control-label"><small>Moeda</small></label><input type="Moeda"
+                                            name="Moeda" id="vat" value="{{ $cliente->moeda->sigla }}"
+                                            class="input-sm form-control-sm form-control" disabled="">
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label for="vat" class=" form-control-label"><small>Alterar
+                                                Moeda</small></label>
+                                        <select data-placeholder="Escolha o clientes..." name="moeda" class="standardSelect" tabindex="1">
+                                            {{-- <option value="" label="default"></option> --}}
+
                                             @forelse ($moedas as $moeda)
-                                            
+
                                             <option value="{{ $moeda->id }}">{{ $moeda->sigla }}</option>
-                                            
+
                                             @empty
                                             <p>Nenhuma moeda</p>
                                             @endforelse
                                         </select>
                                     </div>
-                                    
 
-                            <div class="col-lg-3" style="margin-left: 20px; margin-top: 35px;">
+                                    <div class="col-lg-3" style="margin-left: 20px; margin-top: 35px;">
 
-                                <label for="checkbox1" class="form-check-label ">
-                                    <input type="checkbox" id="checkbox1" name="pessoa" value="1"
-                                        class="form-check-input">blockeado
-                                </label>
+                                        <label for="checkbox1" class="form-check-label ">
+                                            <input type="checkbox" id="checkbox1" name="pessoa" value="1"
+                                                class="form-check-input">blockeado
+                                        </label>
+                                    </div>
+
+                                </div>
                             </div>
+                        </div>
+                    </div>
 
+                    <div class="col-xl-6">
 
+                        <div class="card">
+                            {{-- <div class="card-header"><strong>Editar</strong><small> Entidade</small></div> --}}
+
+                            <div class="card-body card-block">
+                                <div class="text-center">
+                                    <div class="btn-group dropdown">
+                                        <div class="grid-menu grid-menu-2col">
+                                            <label class="">Alterar Foto:</label>
+                                            <div class="no-gutters row">
+
+                                                <form action="{{ route('cliente.update1',$cliente->id) }}"
+                                                    id="ipload-files" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input type="file" name="foto" id="attachments" accept="image/*">
+                                                    {{-- <input type="file" id="attachments" accept="image/*, application/pdf"> --}}
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,22 +152,24 @@
                             </div>
 
                             <div class="col col-sm-4"><label for="vat" class=" form-control-label"><small>Codigo
-                                        Postal</small></label><input type="text" name="codigoP" id="vat" value="{{ $cliente->endereco->cod_postal }}"
-                                    placeholder="Digite o codigo postal" class="input-sm form-control-sm form-control">
+                                        Postal</small></label><input type="text" name="codigoP" id="vat"
+                                    value="{{ $cliente->endereco->cod_postal }}" placeholder="Digite o codigo postal"
+                                    class="input-sm form-control-sm form-control">
                             </div>
 
-                            
+
                             <div class="col col-sm-4"><label for="vat"
-                                class=" form-control-label"><small>Provincia</small></label><input type="text"
-                                name="avenida" id="avenida" placeholder="Provincia..." value="{{ $cliente->endereco->provincium->nome }}"
-                                class="input-sm form-control-sm form-control" disabled="">
-                        </div>
+                                    class=" form-control-label"><small>Provincia</small></label><input type="text"
+                                    name="avenida" id="avenida" placeholder="Provincia..."
+                                    value="{{ $cliente->endereco->provincium->nome }}"
+                                    class="input-sm form-control-sm form-control" disabled="">
+                            </div>
                             <div class="col-lg-4">
                                 <label for="vat" class=" form-control-label"><small>Alterar Provincia</small></label>
                                 <select data-placeholder="Escolha o clientes..." name="provincia" class="standardSelect"
-                            tabindex="1">
+                                    tabindex="1">
                                     <option value="" label="default"></option>
-                                    
+
                                     @forelse ($provincia as $provincias)
                                     @if($provincias->pai->id == $cliente->endereco->provincium->pai->id)
                                     <option value="{{ $provincias->id }}">{{ $provincias->nome }}</option>
@@ -144,7 +182,8 @@
 
                             <div class="col col-sm-4"><label for="bairo"
                                     class=" form-control-label"><small>Bairo</small></label><input type="text"
-                                    name="bairo" id="Bairo" placeholder="Digite o nome do Bairo" value="{{ $cliente->endereco->bairo }}"
+                                    name="bairo" id="Bairo" placeholder="Digite o nome do Bairo"
+                                    value="{{ $cliente->endereco->bairo }}"
                                     class="input-sm form-control-sm form-control">
                             </div>
 
@@ -160,33 +199,32 @@
 
 
                             <div class="col col-sm-4"><label for="telefone"
-                                class=" form-control-label"><small>Telefone</small></label><input type="text"
-                                name="telefone" id="telefone" placeholder="Digite o telefone"value="{{ $cliente->telefone }}"
-                                class="input-sm form-control-sm form-control">
-                        </div>
-                        <div class="col col-sm-4"><label for="telefone"
-                                class=" form-control-label"><small>Web Site</small></label><input type="text"
-                                name="website" id="website" placeholder="Ex. www.xyz.com"value="{{ $cliente->website }}"
-                                class="input-sm form-control-sm form-control">
-                        </div>
+                                    class=" form-control-label"><small>Telefone</small></label><input type="text"
+                                    name="telefone" id="telefone" placeholder="Digite o telefone"
+                                    value="{{ $cliente->telefone }}" class="input-sm form-control-sm form-control">
+                            </div>
+                            <div class="col col-sm-4"><label for="telefone" class=" form-control-label"><small>Web
+                                        Site</small></label><input type="text" name="website" id="website"
+                                    placeholder="Ex. www.xyz.com" value="{{ $cliente->website }}"
+                                    class="input-sm form-control-sm form-control">
+                            </div>
 
 
                         </div>
                     </div>
                 </div>
-
             </div>
 
             {{--  cliente  --}}
             <div class="tab-pane fade" id="custom-nav-cliente" role="tabpanel" aria-labelledby="custom-nav-cliente-tab">
 
                 <div class="row">
-                    
-                    <div class="col col-sm-4"><label for="telefone"
-                        class=" form-control-label"><small>Grupo de Clientes</small></label><input type="text"
-                        name="telefone" id="telefone" placeholder="Digite o telefone"value="{{ $cliente->gupo_cliente->descricao }}"
-                        class="input-sm form-control-sm form-control" disabled="">
-                </div>
+
+                    <div class="col col-sm-4"><label for="telefone" class=" form-control-label"><small>Grupo de
+                                Clientes</small></label><input type="text" name="telefone" id="telefone"
+                            placeholder="Digite o telefone" value="{{ $cliente->gupo_cliente->descricao }}"
+                            class="input-sm form-control-sm form-control" disabled="">
+                    </div>
 
                     <div class="col-lg-4">
                         <label for="vat" class=" form-control-label"><small>Alterar G. Cliente</small></label>
@@ -203,13 +241,13 @@
                         </select>
                     </div>
 
-                    
 
-                    <div class="col col-sm-4"><label for="telefone"
-                        class=" form-control-label"><small>Metodo de Pagamento</small></label><input type="text"
-                        name="telefone" id="telefone" placeholder="Digite o telefone"value="{{ $cliente->metode_pagamento->metodo }}"
-                        class="input-sm form-control-sm form-control" disabled="">
-                </div>
+
+                    <div class="col col-sm-4"><label for="telefone" class=" form-control-label"><small>Metodo de
+                                Pagamento</small></label><input type="text" name="telefone" id="telefone"
+                            placeholder="Digite o telefone" value="{{ $cliente->metode_pagamento->metodo }}"
+                            class="input-sm form-control-sm form-control" disabled="">
+                    </div>
                     <div class="col-lg-4">
                         <label for="vat" class=" form-control-label"><small>Alterar M. Pagamento</small></label>
                         <select data-placeholder="Escolha o metodo de pagamento..." name="MtpagamentoC"
@@ -227,13 +265,13 @@
                 </div>
 
                 <div class="row" style="margin-top: 20px">
-                    
 
-                    <div class="col col-sm-4"><label for="telefone"
-                        class=" form-control-label"><small>Regime de Imposto</small></label><input type="text"
-                        name="telefone" id="telefone" placeholder="Digite o telefone" value="{{ $cliente->regime_iva->regime }}"
-                        class="input-sm form-control-sm form-control" disabled="">
-                </div>
+
+                    <div class="col col-sm-4"><label for="telefone" class=" form-control-label"><small>Regime de
+                                Imposto</small></label><input type="text" name="telefone" id="telefone"
+                            placeholder="Digite o telefone" value="{{ $cliente->regime_iva->regime }}"
+                            class="input-sm form-control-sm form-control" disabled="">
+                    </div>
                     <div class="col-lg-4">
                         <label for="vat" class=" form-control-label"><small>Alterar Regime. Imposto</small></label>
                         <select data-placeholder="Escolha o imposto..." name="regimeC" class="standardSelect"
@@ -249,20 +287,20 @@
                         </select>
                     </div>
 
-                                        
 
-                    <div class="col col-sm-4"><label for="telefone"
-                        class=" form-control-label"><small>Termo de Pagamento</small></label><input type="text"
-                        name="telefone" id="telefone" placeholder="Digite o telefone"value="{{ $cliente->regime_pagamento->descricao }}"
-                        class="input-sm form-control-sm form-control" disabled="">
-                </div>
+
+                    <div class="col col-sm-4"><label for="telefone" class=" form-control-label"><small>Termo de
+                                Pagamento</small></label><input type="text" name="telefone" id="telefone"
+                            placeholder="Digite o telefone" value="{{ $cliente->regime_pagamento->descricao }}"
+                            class="input-sm form-control-sm form-control" disabled="">
+                    </div>
                     <div class="col-lg-4">
                         <label for="vat" class=" form-control-label"><small>Alterar T. Pagamento</small></label>
                         <select data-placeholder="Escolha Termo de pagamento..." name="RpagamentoC"
                             class="standardSelect" tabindex="1">
 
                             <option value="" label="default"></option>
-                            
+
                             @forelse ($regime_pagamento as $regime_pagamentos)
 
                             <option value="{{ $regime_pagamentos->id }}"> {{ $regime_pagamentos->descricao }}</option>
@@ -284,10 +322,13 @@
 
 
                 <div class="col-lg-12">
-                    <button type="submit" name="cliente_alterar" value="cliente_alterar" class="btn btn-primary btn-sm" style="float: right">Alterar</button>
+                    <button type="submit" name="cliente_alterar" value="cliente_alterar" class="btn btn-primary btn-sm"
+                        style="float: right">Alterar</button>
                 </div>
 
             </div>
+            {{-- </div> --}}
+
         </div>
     </form>
 </div>
@@ -313,6 +354,11 @@
 
 
 <script>
+
+    // php artisan storage:link
+    // Route::match(['get', 'post'],'/venda/Cliente/update/{id}', 'venda\cliente\clienteController@update1')->name('cliente.update1');
+     
+
     jQuery(document).ready(function () {
         
 
@@ -321,7 +367,7 @@
             uploadExtraData: {
                 '_token': "{{ csrf_token() }}"
             },
-            uploadUrl: '#'
+            uploadUrl: '{{ URL::route('cliente.update1',$cliente->id) }}'
         })
     });
   

@@ -2,48 +2,48 @@
 
 @section('content')
 
-@if (session('message'))
-    <div class="alert alert-success fade show" role="alert">Sucess. <a href="javascript:void(0);"
-            class="alert-link">{{ session('message') }}</a>
-    </div>
-    @endif
 <div class="row">
 
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title">Cliente </strong><small>lista</small>
+                <strong class="card-title">Fatura </strong><small>lista</small>
             </div>
             <div class="card-body">
                 <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size: small;">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
+                            <th>#</th>
+                            <th>Estado do Pagamento</th>
+                            <th>Data</th>
+                            <th>Fatura</th>
+                            <th>Cliente</th>
                             <th>Nuit</th>
-                            <th>Email</th>
-                            <th>Grupo</th>
-                            <th>Opções</th>
+                            <th>Total</th>
+                            <th>Opcao</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($clientes as $cliente)
+                        @forelse ($fatura as $faturas)
                         <tr>
-                            <td>{{ $cliente->id }}</td>
-                            <td>{{ $cliente->nome }}</td>
-                            <td>{{ $cliente->nuit }}</td>
-                            <td>{{ $cliente->email }}</td>
-                            <td>{{ $cliente->gupo_cliente->descricao }}</td>
+                            <td>{{ $faturas->id }}</td>
+                            <td>{{ $faturas->estado_pagamento }}</td>
+                            <td>{{ $faturas->created_at }}</td>
+                            <td>{{ $faturas->numero_fatura }}</td>
+                            <td>{{ $faturas->cliente->nome }}</td>
+                            <td>{{ $faturas->cliente->nuit }}</td>
+                            <td>{{ $faturas->total }}</td>
+                            <td>{{ $faturas->total }}</td>
                             <td>
-                                <a href="{{ route('cliente.show',$cliente->id) }}"
+                                <a href="{{ route('orcamento.detalhes',$faturas) }}"
                                     class="btn btn-info btn-sm">
                                     <i class=" fa fa-eye"></i>
                                 </a>
-                                <a href="{{ route('cliente.edit',$cliente->id) }}"
+                                <a href="{{ route('orcamento.alterar_orcamento',$faturas) }}"
                                     class="btn btn-warning btn-sm">
                                     <i class=" pe-7s-edit"></i>
                                 </a>
-                                <a href="{{ route('cliente.destroy1',$cliente->id) }}"
+                                <a href="{{ route('fatura.destroy',$faturas->id) }}"
                                     onclick="return confirm('Tem sertesa que deseja eliminar')"
                                     class="delete-modal btn btn-danger btn-sm">
                                     <i class=" fa fa-trash"></i>
@@ -51,7 +51,7 @@
                             </td>
                         </tr>
                         @empty
-                        <p>Nenhum cliente encontrado</p>
+                        <p>Nenhum orcamento encontrado</p>
                         @endforelse
                     </tbody>
                 </table>
@@ -62,7 +62,7 @@
 </div>
 
 <div class="fixed-action-btn">
-    <a href="{{ route('cliente.create') }}" class="btn-floating btn-large btn-primary">
+    <a href="{{ route('orcamento.create') }}" class="btn-floating btn-large btn-primary">
         <i class="ti-plus"></i>
     </a>
 </div>

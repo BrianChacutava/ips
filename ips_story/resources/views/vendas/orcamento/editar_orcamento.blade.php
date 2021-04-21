@@ -4,10 +4,8 @@
 
 
 <div class="card">
-    <div class="card-header"><strong>Criar</strong><small> Orçamento</small>
-        <a href="{{ route('cliente.create') }}" class="btn btn-primary btn-sm" style="float: right">
-            criar novo cliente
-        </a>
+    <div class="card-header"><strong>Editar</strong><small> Orçamento</small>
+        
     </div>
     <div class="card-body card-block">
         @if ($validado == 'true')
@@ -98,20 +96,15 @@
                         value="{{Auth::user()->nome}} - Brian Chacutava" class="input-sm form-control-sm form-control">
                 </div>
 
-
-                <div class="col col-sm-4"><label for="vat" class=" form-control-label"><small>Estado do
-                            documento</small></label><input type="text" name="estado" id="estado" placeholder=""
-                        value="pendente" class="input-sm form-control-sm form-control" disabled="">
-                </div>
                 <div class="divider col col-sm-12">.</div>
 
 
                 {{-- @if ($validado == 'true') --}}
-
+{{-- 
                 <div class="col col-sm-12">
                     <button type="submit" class="btn btn-primary btn-sm" style="float: right">continuar
                     </button>
-                </div>
+                </div> --}}
                 {{-- @endif --}}
 
                 @isset($cotacao)
@@ -188,7 +181,7 @@
             </form>
             @isset($cotacao)
 
-            <form action="{{ route('orcamento.validar_cotacao', $cotacao) }}" class="col col-sm-12 form-row">
+            <form action="{{ route('orcamento.salvar_alteracao', $cotacao) }}" class="col col-sm-12 form-row">
 
                 <div class="col col-sm-4"><label for="vat"
                         class=" form-control-label"><small>subtotal</small></label><input  type="text" name="subtotal"
@@ -206,12 +199,18 @@
                         id="Total" placeholder="" value="{{ $subtotal+($subtotal*0.17) }}"
                         class="input-sm form-control-sm form-control" >
                 </div>
+                
+
+                <div class="col col-sm-4"><label for="vat" class=" form-control-label"><small>Estado do
+                    documento</small></label><input type="text" name="estado" id="estado" placeholder=""
+                value="{{ $cotacao->estado }}" class="input-sm form-control-sm form-control">
+        </div>
                 <div class="divider col col-sm-12">.</div>
 
 
                 <div class="col-lg-12">
                     <button type="submit" class="btn btn-primary btn-sm"
-                        style="float: right">Validar Cotação</button>
+                        style="float: right">Alterar Cotação</button>
                 </div>
             </form>
             @endisset
@@ -262,7 +261,7 @@
                                         </div>
                                 </div>  --}}
 
-
+                    <input type="hidden" name="editar" id="editar" value="true">
                     <div class="col col-sm-12"><label for="nome" class=" form-control-label"><small>
                                 Preço</small></label><input type="number" step="0.01" id="preco"
                             placeholder="Digite o preço" name="preco" class="input-sm form-control-sm form-control"

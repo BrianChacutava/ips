@@ -32,9 +32,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property TipoArtigo $tipo_artigo
  * @property UnidadeBase $unidade_base
  * @property Collection|Armazem[] $armazems
- * @property Collection|Preco[] $precos
  * @property Collection|Venda[] $vendas
+ * @property Collection|Cotacao[] $cotacaos
  * @property Collection|Fatura[] $faturas
+ * @property Collection|Preco[] $precos
  *
  * @package App\Models
  */
@@ -83,17 +84,17 @@ class Artigo extends Model
 					->withTimestamps();
 	}
 
-	public function precos()
-	{
-		return $this->belongsToMany(Preco::class, 'artigo_has_preco')
-					->withPivot('id', 'quantidade', 'grupo_preco_id', 'deleted_at')
-					->withTimestamps();
-	}
-
 	public function vendas()
 	{
 		return $this->belongsToMany(Venda::class, 'artigo_has_venda')
 					->withPivot('id', 'deleted_at')
+					->withTimestamps();
+	}
+
+	public function cotacaos()
+	{
+		return $this->belongsToMany(Cotacao::class, 'cotacao_has_artigo1')
+					->withPivot('id', 'preco', 'quantidade', 'desconto', 'deleted_at', 'total')
 					->withTimestamps();
 	}
 
@@ -102,5 +103,10 @@ class Artigo extends Model
 		return $this->belongsToMany(Fatura::class, 'fatura_has_artigo')
 					->withPivot('id', 'quantidade', 'desconto', 'valor', 'valor_iva', 'deleted_at')
 					->withTimestamps();
+	}
+
+	public function precos()
+	{
+		return $this->hasMany(Preco::class);
 	}
 }

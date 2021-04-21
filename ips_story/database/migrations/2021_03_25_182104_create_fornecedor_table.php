@@ -27,8 +27,8 @@ class CreateFornecedorTable extends Migration
             $table->unsignedInteger('Regime_iva_id')->nullable()->index('fk_fornecedor_Regime_iva1_idx');
             $table->timestamps();
             $table->softDeletes();
-            $table->unsignedInteger('endereco_id')->index('fk_fornecedor_endereco1_idx');
-            $table->unsignedInteger('gupo_fornecedor_id')->index('fk_fornecedor_gupo_fornecedor1_idx');
+            $table->unsignedInteger('endereco_id')->nullable()->index('fk_fornecedor_endereco1_idx');
+            $table->unsignedInteger('gupo_fornecedor_id')->nullable()->index('fk_fornecedor_gupo_fornecedor1_idx');
         });
     }
 

@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * 
- * @property ArtigoHasPreco $artigo_has_preco
  * @property Cotacao $cotacao
  *
  * @package App\Models
@@ -45,11 +44,6 @@ class CotacaoHasArtigoHasPreco extends Model
 		'preço',
 		'quantidade'
 	];
-
-	public function artigo_has_preco()
-	{
-		return $this->belongsTo(ArtigoHasPreco::class);
-	}
 
 	public function cotacao()
 	{

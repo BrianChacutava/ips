@@ -91,7 +91,7 @@ class Empresa extends Model
 
 	public function dados_bancarios()
 	{
-		return $this->belongsToMany(DadosBancario::class, 'empresa_has_dados_bancarios', 'empresa_id', 'dados_bancarios_id')
+		return $this->belongsToMany(DadosBancario::class, 'empresa_has_dados_bancarios')
 					->withPivot('id', 'deleted_at')
 					->withTimestamps();
 	}
