@@ -12,7 +12,7 @@
     <title>IPS</title>
     <meta name="description" content="IPS">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
 
 </head>
 @include('pdf-style')
@@ -21,79 +21,80 @@
     <div class="top-left" style="margin-left: 1%">
 
         {{-- <div class="navbar-brand "><img src="{{asset('images/lg-01.png')}}" alt="IPS"></div> --}}
-        <div class="navbar-brand ">
-            @php
-                $image = public_path()."/images/lg-01.png";
-                $content = file_get_contents($image);
-                $encodedImage = (base64_encode($content));
-            @endphp
-            {{-- $obj->logoB64(); --}}
-            
-            <img src="data:image/png;base64,{{ $encodedImage }}" alt="IPS">
-        </div>
-        <div class="col-lg-12">
-            <span class="badge badge-light ">{{ $empresa->domicilio_atividade->website }}</span>
-        </div>
+    <div class="navbar-brand col-lg-12">
+        @php
+        $image = public_path()."/images/lg-01.png";
+        $content = file_get_contents($image);
+        $encodedImage = (base64_encode($content));
+        @endphp
+        {{-- $obj->logoB64(); --}}
 
-        <h6> {{ $empresa->nome_comercial }} </h6>        
-        <h6>{{ $empresa->domicilio_atividade->endereco->provincium->capital }}/ Rua {{ $empresa->domicilio_atividade->endereco->rua }}</h6>
-        <h6>Nuit: {{ $empresa->nuit }} </h6>
-    
-        
-        <br><br><br>
+        <img src="data:image/png;base64,{{ $encodedImage }}" alt="IPS">
+    </div>
+    {{-- <div class="col-lg-12"> --}}
+    <span class="badge badge-light ">{{ $empresa->domicilio_atividade->website }}</span>
+    {{-- </div> --}}
+
+    <h6> {{ $empresa->nome_comercial }} </h6>
+    <h6>{{ $empresa->domicilio_atividade->endereco->provincium->capital }}/ Rua
+        {{ $empresa->domicilio_atividade->endereco->rua }}</h6>
+    <h6>Nuit: {{ $empresa->nuit }} </h6>
 
 
+    <br><br><br>
 
-        {{--  <div class="navbar-brand col-lg-12" style="background-color: darkcyan"><img src="{{asset('images/lg-01.png')}}"
-        alt="IPS">
-    </div> --}}
-    {{--  <a class="navbar-brand hidden" href="./"><img src="{{asset('images/lg-01.png')}}" alt="IPS"></a> --}}
+</div>
+
+{{--  <div class="navbar-brand col-lg-12" style="background-color: darkcyan"><img src="{{asset('images/lg-01.png')}}"
+alt="IPS">
+</div> --}}
+{{--  <a class="navbar-brand hidden" href="./"><img src="{{asset('images/lg-01.png')}}" alt="IPS"></a> --}}
 </div>
 
 
 <div class="col-lg-12  text-right">
-    <strong >Exmo.(s) Sr.(s)</strong><br>
+    <strong>Exmo.(s) Sr.(s)</strong><br>
 
     <strong>{{ $cotacao->cliente->nome }}</strong><br>
     <h6>{{ $cotacao->cliente->endereco->provincium->capital }}/ {{ $cotacao->cliente->endereco->rua }}</h6>
     <h6>Nuit: {{ $cotacao->cliente->nuit }} </h6>
-    
-        <div class=" text-center" style="font-size: 120%;"><span class="badge badge-light">
-                Cotação
-                {{  Auth::user()->funcionario->departamentos()->first()->empresa->domicilio_atividade->endereco->provincium->capital }}
-                Num. {{ $cotacao->num_cotacao }}
-            </span>
-        </div>
+
+    <div class=" text-center" style="font-size: 120%;"><span class="badge badge-light">
+            Cotação
+            {{  Auth::user()->funcionario->departamentos()->first()->empresa->domicilio_atividade->endereco->provincium->capital }}
+            Num. {{ $cotacao->num_cotacao }}
+        </span>
+    </div>
     <h6 class=" text-right" style="font-size: 80%">Original</h6>
     <br>
-    
+
 
     <div class="divider" style="border-bottom: 1px solid #636363"></div>
 
     <div class="row float-left">
-        
-            <span style="font-size: 80%; padding: .75rem 1.25rem;">Quem vende: {{ $cotacao->funcionario->user->name }}
-            </span>
-            
-            <span style="font-size: 80%; padding: .75rem 1.25rem;">Termos de Pagamento:
-                {{ $cotacao->termo_pagamento->termo }}</span>
-            
-            <span style="font-size: 80%; padding: .75rem 1.25rem;">Limite de Pagamento:
-                {{ $cotacao->termo_pagamento->limite_pagamento }}</span>
-            
-            <span style="font-size: 80%; padding: .75rem 1.25rem;">Moeda: {{ $cotacao->cliente->moeda->sigla }}</span>
 
-            <span style="font-size: 80%; padding: .75rem 1.25rem;">Cambio:
-                {{ $cotacao->cliente->moeda->cambio_atual }}</span>
-            <br>
-                
-            <span style="font-size: 80%; padding: .75rem 1.25rem;">Condição de Pagamento:
-                Fatura {{ $cotacao->regime_pagamento->dias }} dias</span>
-                
-            <span style="font-size: 80%; padding: .75rem 1.25rem;">Data de Faturação:
-                {{ $cotacao->created_at }}</span>
-            
-    </div> 
+        <span style="font-size: 80%; padding: .75rem 1.25rem;">Quem vende: {{ $cotacao->funcionario->user->name }}
+        </span>
+
+        <span style="font-size: 80%; padding: .75rem 1.25rem;">Termos de Pagamento:
+            {{ $cotacao->termo_pagamento->termo }}</span>
+
+        <span style="font-size: 80%; padding: .75rem 1.25rem;">Limite de Pagamento:
+            {{ $cotacao->termo_pagamento->limite_pagamento }}</span>
+
+        <span style="font-size: 80%; padding: .75rem 1.25rem;">Moeda: {{ $cotacao->cliente->moeda->sigla }}</span>
+
+        <span style="font-size: 80%; padding: .75rem 1.25rem;">Cambio:
+            {{ $cotacao->cliente->moeda->cambio_atual }}</span>
+        <br>
+
+        <span style="font-size: 80%; padding: .75rem 1.25rem;">Condição de Pagamento:
+            Fatura {{ $cotacao->regime_pagamento->dias }} dias</span>
+
+        <span style="font-size: 80%; padding: .75rem 1.25rem;">Data de Faturação:
+            {{ $cotacao->created_at }}</span>
+
+    </div>
 
     <div class="divider" style="border-bottom: 1px solid #636363"></div>
 
@@ -143,31 +144,31 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <strong class="text-left" style="font-size: 80%; float: left;">Resumo de IVA</strong>         
-                    <br>
+            <strong class="text-left" style="font-size: 80%; float: left;">Resumo de IVA</strong>
+            <br>
 
             {{-- <div class="weather-category twt-category"> --}}
-                {{-- <ul> --}}
-                    {{-- <span class="active"  style="color: black"> --}}
-                        <span style="font-size: 80%; float: left;"><strong>Taxa</strong> {{ $cotacao->regime_iva->percentagem }}% | </span>
-                        
-                    {{-- </span> --}}
-                    {{-- <span style="color: black"> --}}
-                    <span style="font-size: 80%; float: left;"><strong>Insidencia</strong>  {{ $cotacao->subtotal }} | </span>
-                    {{-- </span> --}}
-                    {{-- <span style="color: black"> --}}
-                        <span style="font-size: 80%; float: left;"><strong>Total IVA</strong> {{  $cotacao->iva }} | </span>
-                        
-                    {{-- </span> --}}
-                {{-- </ul> --}}
+            {{-- <ul> --}}
+            {{-- <span class="active"  style="color: black"> --}}
+            <span style="font-size: 80%; float: left;"><strong>Taxa</strong> {{ $cotacao->regime_iva->percentagem }}% |
+            </span>
+
+            {{-- </span> --}}
+            {{-- <span style="color: black"> --}}
+            <span style="font-size: 80%; float: left;"><strong>Insidencia</strong> {{ $cotacao->subtotal }} | </span>
+            {{-- </span> --}}
+            {{-- <span style="color: black"> --}}
+            <span style="font-size: 80%; float: left;"><strong>Total IVA</strong> {{  $cotacao->iva }} | </span>
+
+            {{-- </span> --}}
+            {{-- </ul> --}}
             {{-- </div> --}}
-
-
         </div>
-        
 
-        <div class="col-lg-4 text-right"  style="float: right;">
-                <table class="table table-responsive float-right" id="target" style="float: right; font-size: 80%">
+
+        <div class="row" style="float: right;">
+            <div class="col-lg-4 text-right">
+                <table class="table table-responsive text-right" id="target" style="float: right; font-size: 80%">
                     <tr>
                         <td> Mercadoria e/ Serviço</td>
                         <td>{{ $cotacao->subtotal }}</td>
@@ -178,7 +179,7 @@
                     </tr>
                     <tr>
                         <td>Descontos Financeiros</td>
-                        <td>{{ $cotacao->desconto }}.00</td>uuuuuuuu
+                        <td>{{ $cotacao->desconto }}.00</td>
                     </tr>
                     <tr>
                         <td>Adiantamentos</td>
@@ -194,9 +195,12 @@
                     </tr>
 
                 </table>
+            </div>
         </div>
-        
-        <strong class="text-left" style="float: left; font-size: 80%">DETALHES BANCARIOS</strong>
+
+        <div class="col-lg-4">
+            <strong class="text-left" style="float: left; font-size: 80%">DETALHES BANCARIOS</strong>
+        </div>
         <table class="table table-responsive" id="target" style="font-size: 80%">
 
             @forelse ($dadosBancariosHas as $dadosBancarios)
@@ -221,16 +225,17 @@
 </div>
 
 <div class="col-sm-8">
-    <h6 style="font-size: 80%">documento processado por computador / @InternetPrintServices / #ips_story</h6>
+    <h6 style="font-size: 80%">Documento processado por computador </h6>
 </div>
 
 <div class="divider col-sm-12" style="border-bottom: 1px solid #000009"></div>
 
 
 
-<h6 style="font-size: 80%"> 
+<h6 style="font-size: 80%" style="margin-left: 1%;">
     {{ $empresa->nome_comercial }}
-    * {{ $empresa->domicilio_atividade->endereco->provincium->capital }} * Rua {{ $empresa->domicilio_atividade->endereco->rua }}
+    * {{ $empresa->domicilio_atividade->endereco->provincium->capital }} * Rua
+    {{ $empresa->domicilio_atividade->endereco->rua }}
     * Nuit: {{ $empresa->nuit }} * (+258) {{ $empresa->domicilio_atividade->telemovel }}
     * E-mail: {{ $empresa->domicilio_atividade->email }} * WebSite: {{ $empresa->domicilio_atividade->website }}
 </h6>

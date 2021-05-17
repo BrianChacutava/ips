@@ -29,7 +29,10 @@ Route::middleware(['auth'])->group(function () {
 Route::resource('/venda/artigo', 'venda\artigo\artigosController');
 Route::get('/venda/Artigo', 'venda\artigo\artigosController@store1')->name('artigo.store1');
 Route::get('/venda/Artigo/add_preco/{id}', 'venda\artigo\artigosController@add_preco')->name('artigo.add_preco');
+Route::get('/venda/Artigo/add_armazem/{id}', 'venda\artigo\artigosController@add_armazem')->name('artigo.add_armazem');
+Route::get('/venda/Artigo/add_stok/{id}', 'venda\artigo\artigosController@add_stok')->name('artigo.add_stok');
 Route::get('/venda/Artigo/alterar_status_preco/{status}/{preco_id}/{artigo_id}', 'venda\artigo\artigosController@alterar_status_preco')->name('artigo.alterar_status_preco');
+Route::get('/venda/Artigo/alterar_stock_minimax/{artigo}', 'venda\artigo\artigosController@alterar_stock_minimax')->name('artigo.alterar_stock_minimax');
 
 Route::resource('/venda/orcamento', 'venda\orcamento\cotacaoController');
 Route::get('/venda/Orcamento/store1', 'venda\orcamento\cotacaoController@store1')->name('orcamento.store1');
@@ -55,6 +58,7 @@ Route::resource('/despesas/despesas', 'despesas\despesasController');
 Route::get('/despesas/Despesas', 'despesas\despesasController@store1')->name('despesa.store1');
 
 Route::resource('/venda/fatura', 'venda\fatura\faturaController');
+Route::get('/venda/fatura/add_artigo/{fatura}', 'venda\fatura\faturaControllerr@add_artigo')->name('fatura.add_artigo');
 
 Route::get('pdf/{cotacoes}', 'pdfController@gerapdf')->name('cotacao.pdf');
 

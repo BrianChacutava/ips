@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="row">
+<div class="row" style="font-size: 90%;">
 
     <div class="col-md-12">
         <div class="card">
@@ -10,7 +10,7 @@
                 <strong class="card-title">Orçamentos / Cotações </strong><small>lista</small>
             </div>
             <div class="card-body">
-                <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size: small;">
+                <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size: 90%;">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -35,7 +35,7 @@
                             <td>{{ $orcamentos->cliente->email }}</td>
                             <td>{{ $orcamentos->estado }}</td>
                             <td>{{ $orcamentos->total }}</td>
-                            <td>
+                            <td  >
                                 <a href="{{ route('orcamento.detalhes',$orcamentos) }}"
                                     class="btn btn-info btn-sm">
                                     <i class=" fa fa-eye"></i>

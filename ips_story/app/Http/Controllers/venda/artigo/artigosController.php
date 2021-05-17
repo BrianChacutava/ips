@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\venda\artigo;
 
-use App\Http\Controllers\Controller;
-use App\Models\Armazem;
-use App\Models\ArmazemHasArtigo;
+use App\Models\Preco;
 use App\Models\Artigo;
-use App\Models\ContaRendimento;
+use App\Models\Armazem;
 use App\Models\Empresa;
 use App\Models\GrupoPreco;
-use App\Models\Preco;
 use App\Models\TipoArtigo;
 use App\Models\UnidadeBase;
 use Illuminate\Http\Request;
+use App\Models\ContaRendimento;
+use App\Models\ArmazemHasArtigo;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class artigosController extends Controller
 {
@@ -40,12 +41,14 @@ class artigosController extends Controller
     public function create()
     {
         //
+        $empresa = Auth::user()->funcionario->departamentos()->first()->empresa;
+
         $artigo = Artigo::all();
         $unidade = UnidadeBase::all();
         $tipo_artigo = TipoArtigo::all();
         $conta_rendimento = ContaRendimento::all();
         
-        return view('vendas/artigo/criar_artigo', compact('artigo', 'unidade', 'tipo_artigo', 'conta_rendimento'));
+        return view('vendas/artigo/criar_artigo', compact('artigo', 'unidade', 'tipo_artigo', 'conta_rendimento','empresa'));
     }
 
     /**
@@ -99,8 +102,9 @@ class artigosController extends Controller
         $conta_rendimento = ContaRendimento::all();
         $preco = Preco::all();
         $grupo_preco = GrupoPreco::all();
-        $armazem = Armazem::all();
-        $empresa = Empresa::all();
+        $armazems = Armazem::all();
+        $armazem = Auth::user()->funcionario->departamentos()->first()->empresa->armazems;
+        $empresa = Auth::user()->funcionario->departamentos()->first()->empresa;
         $armazem_artigo = ArmazemHasArtigo::all();
         
         return view('vendas/artigo/edit_artigo', compact('empresa','armazem', 'armazem_artigo', 'artigo', 'unidade', 'tipo_artigo', 'conta_rendimento', 'preco', 'grupo_preco'));
@@ -122,6 +126,45 @@ class artigosController extends Controller
         return redirect()->route('artigo.edit',$request->artigo_id);
     }
 
+    public function add_armazem(Request $request, $id)
+    {
+        //
+        // dd($request);
+        $armazem_artigo = new ArmazemHasArtigo();
+        $armazem_artigo->armazem_id = $request->armazem;
+        $armazem_artigo->artigo_id = $id;
+        $armazem_artigo->quantidade = $request->quantidade;
+        $armazem_artigo->valor_entrada = $request->valor;
+        $armazem_artigo->entrada = "e";
+        $armazem_artigo->stock_min = $request->minimo;
+        $armazem_artigo->stock_max = $request->maximo;
+        $armazem_artigo->saldo = $request->quantidade * $request->valor;
+        
+        $armazem_artigo->save();
+        
+        return redirect()->route('artigo.edit',$id);
+    }
+
+    public function add_stok(Request $request, $id)
+    {
+        //
+        $armazem_artigo = ArmazemHasArtigo::find($id);
+        $data = new ArmazemHasArtigo;
+
+        $data->armazem_id = $armazem_artigo->armazem_id;
+        $data->artigo_id = $armazem_artigo->artigo_id;
+        $data->quantidade = $armazem_artigo->quantidade + $request->quantidade;
+        $data->valor_entrada = $request->valor_entrada;
+        $data->entrada = "e";
+        $data->stock_min = $armazem_artigo->stock_min;
+        $data->stock_max = $armazem_artigo->stock_max;
+        $data->saldo = ($request->quantidade * $request->valor_entrada) + $armazem_artigo->saldo;
+
+        $data->save();
+        
+        return redirect()->route('artigo.edit',$id);
+    }
+
     public function alterar_status_preco($status, $preco_id, $artigo_id)
     {
         //
@@ -131,6 +174,25 @@ class artigosController extends Controller
         $preco->save();
         
         return redirect()->route('artigo.edit',$artigo_id);
+    }
+
+
+    public function alterar_stock_minimax($artigo, Request $request)
+    {
+        //
+        // dd($artigo);
+        
+        $artigo1 = Artigo::find($artigo);
+        $armazem = Armazem::find($request->armazem);
+
+        $armazemWithArtigo1 = ArmazemHasArtigo::where('artigo_id', $artigo1->id)->where('armazem_id', $armazem->id);
+        // dd($armazemWithArtigo1->first()->id);
+        $armazemWithArtigo = ArmazemHasArtigo::find($armazemWithArtigo1->first()->id);
+        $armazemWithArtigo->stock_min = $request->Minimo;
+        $armazemWithArtigo->stock_max = $request->Maximo;
+        $armazemWithArtigo->save();
+
+        return redirect()->route('artigo.edit',$artigo);
     }
 
     /**
